@@ -1,6 +1,7 @@
 const express =require('express');
 const cors= require('cors');
 const mysql=require('mysql')
+var path = require('path');
 var bodyParser = require('body-parser')
 var apiRouer=require('./routes')
 var reportApiRouter=require('./reportRoutes')
@@ -37,6 +38,12 @@ app.use(reportApiRouter);
 
 })
 })*/
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(port, function() {
   console.log('Server is running on port: ' + port)

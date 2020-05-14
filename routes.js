@@ -9,6 +9,14 @@ router.use(cors());
 router .use(bodyParser.urlencoded({ extended: false }));
 router .use(bodyParser.json());
 
+
+router.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "PUT, GET,POST");
+  next();
+ });
+
 //Routes for users
 router.get('/getusers' , async (req , res ) =>{
   try{

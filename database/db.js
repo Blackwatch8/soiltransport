@@ -1,7 +1,7 @@
 const Sequelize=require("sequelize")
 const db={}
 //mysql://bcf5aad9fc6b4b:6f0a84a4@us-cdbr-east-06.cleardb.net/heroku_56236b0149670d1?reconnect=true
-const sequelize= new Sequelize("heroku_56236b0149670d1","bcf5aad9fc6b4b","",{
+/*const sequelize= new Sequelize("heroku_56236b0149670d1","bcf5aad9fc6b4b","",{
     host:"us-cdbr-east-06.cleardb.net",
     dialect:"mysql",
     operaorsAliases: false,
@@ -12,7 +12,7 @@ const sequelize= new Sequelize("heroku_56236b0149670d1","bcf5aad9fc6b4b","",{
         aquire:30000,
         idle: 10000
     }
-}) 
+})*/ 
 
 db.sequelize=sequelize
 db.Sequelize=Sequelize

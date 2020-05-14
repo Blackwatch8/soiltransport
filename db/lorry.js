@@ -1,7 +1,5 @@
-const mysql=require('mysql');
-const config=require('../config');
 
-Connection=mysql.createConnection(config.mysql);
+Connection = require('./connect')
 
 getLorry = async () => {
     return new Promise((resolve,reject)=>{
@@ -56,7 +54,6 @@ deleteLorry = async (vehicleNumber) =>{
         })
     })
 }
-
 module.exports={
     getLorry,
     addLorry,

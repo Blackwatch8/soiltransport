@@ -1,7 +1,5 @@
 
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+Connection = require('./connect')
  all = async() =>{
     return new Promise((resolve, reject) => {
         Connection.query('select * from user',(err,results) => {
@@ -81,6 +79,7 @@ updateUserRole=async(role,email)=>{
     })
 })
 }
+
 module.exports={
     all,
     findUser,

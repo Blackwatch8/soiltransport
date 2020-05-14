@@ -1,6 +1,5 @@
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+
+Connection = require('./connect')
 
 addChequeDetails=async(chequeNo,realiseDate,issueDate,amount,company,bank)=>{
     return new Promise((resolve , reject) =>{

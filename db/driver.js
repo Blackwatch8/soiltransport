@@ -1,6 +1,5 @@
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+
+Connection = require('./connect')
 
 getDrivers= async()=>{
     return new Promise((resolve,reject) =>{

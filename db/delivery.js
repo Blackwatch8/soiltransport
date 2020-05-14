@@ -1,6 +1,5 @@
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+
+Connection = require('./connect')
 
 addDelivery= async (Distance,deliveryDate,deliveryTime,payment,vehicleNo,driverLiscence,unloadingPlace) => {
     return new Promise((resolve,reject) => {
@@ -30,6 +29,7 @@ getDeliveries = async () => {
             }
         })
     })
+    
 }
 
 updateDelivery= async (deliveryAcceptance,deliveryNoteNo) => {
@@ -61,9 +61,10 @@ updateDeliTable= async(startDate,endDate) =>{
             else{
                 resolve(results);
             }
-        })
+        });
+        
     }
-    )
+    );
 }
 getDailyDeliveryByLorry= async (vehicleNo) => {
     var today = new Date(),
@@ -129,7 +130,7 @@ deleteDelivery=(deliveryNoteNO)=>{
             else{
                 resolve(results);
             }
-        })
+        });
     })
 }
 

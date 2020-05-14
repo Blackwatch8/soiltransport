@@ -1,6 +1,5 @@
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+
+Connection = require('./connect');
 
 updatePayment = async(paymentsAmount,paymentTypeId,paymentsDescription,vehicleNo) =>{
     return new Promise((resolve,reject) => {

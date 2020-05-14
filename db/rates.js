@@ -1,6 +1,5 @@
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+
+Connection = require('./connect')
 
 getRates = async () => {
     return new Promise((resolve,reject) => {
@@ -13,8 +12,8 @@ getRates = async () => {
             }
         })
     })
-}
 
+}
 module.exports={
     getRates
 }

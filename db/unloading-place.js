@@ -1,6 +1,5 @@
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+
+Connection = require('./connect')
 
 getUnloadingPlaces= async =>{
     return new Promise((resolve,reject)=>{
@@ -66,7 +65,6 @@ updateUnloadingPlace = async (unloadingPlace,unloadingRate,company)=>{
          })
     })
 }
-
 module.exports={
     getUnloadingPlaces,
     findUnloadingPlaces,

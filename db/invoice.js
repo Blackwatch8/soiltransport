@@ -1,6 +1,5 @@
-const mysql= require('mysql');
-const config= require('../config');
-Connection = mysql.createConnection(config.mysql);
+
+Connection = require('./connect')
 
 addInvoice=(company,range,amount)=>{
     return new Promise((resolve,reject)=>{
@@ -41,7 +40,6 @@ deleteInvoice=(invoiceId)=>{
         })
     })
 }
-
 module.exports={
     addInvoice,
     getInvoice,

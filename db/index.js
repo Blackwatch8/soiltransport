@@ -12,11 +12,9 @@ const Cheques=require('./cheque')
 const Invoice=require('./invoice')
 const Bal=require('./companypays')
 
-module.exports= Connection = mysql.createConnection(config.mysql);
+module.exports= Connection = mysql.createPool(config.mysql);
 
-Connection.connect(err =>{
-    if(err) console.groupCollapsed(err);
-});
+
 
 module.exports={
     Users,

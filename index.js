@@ -5,6 +5,7 @@ var path = require('path');
 var bodyParser = require('body-parser')
 var apiRouer=require('./routes')
 var reportApiRouter=require('./reportRoutes')
+var mailSender =require('./emailserver')
 var port = process.env.PORT || 4000
 
 const app=express();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(apiRouer);
 app.use(reportApiRouter);
+app.use(mailSender);
 
 /*app.post('/adduser',(req,res) => {
     const {first_name,last_name,email} = req.body;

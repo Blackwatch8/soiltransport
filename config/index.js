@@ -1,4 +1,4 @@
-/*module.exports= ({
+module.exports= ({
     mysql:{
         host:'us-cdbr-east-06.cleardb.net',
         user:'bcf5aad9fc6b4b',
@@ -11,8 +11,8 @@
         aquire:30000,
         idle: 10000
     }
-})*/
-module.exports= ({
+})
+/*module.exports= ({
     mysql:{
         host:'localhost',
         user:'root',
@@ -25,4 +25,4 @@ module.exports= ({
         aquire:30000,
         idle: 10000
     }
-})
+})*/

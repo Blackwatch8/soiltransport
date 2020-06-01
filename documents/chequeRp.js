@@ -1,226 +1,118 @@
+global.window = {document: {createElementNS: () => {return {}} }};
+global.navigator = {};
+global.html2pdf = {};
+global.btoa = () => {};
+
+const fs = require('fs')
+const jsPDF = require('jspdf');
+const autoTable=require ('jspdf-autotable');
+
+
+//All the cheque Report
 chequeReport=(range, cheque,total)=>{
-   var ch=JSON.stringify(cheque);
-    return `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-        th, td, p, input {
-            font:8px Times-new-roman;
-        }
 
-        .topic2{
-                padding : 0px 130px;
-            }
+    var doc = new jsPDF();
 
-        .from{
-            padding:0px 10px 0px
-            }
-            table, th, td 
-            {
-                table-layout: auto;
-                border: solid 1px #DDD;
-                border-collapse: collapse;
-                padding: 2px 3px;
-                text-align: center;
-                min-width :50px;
-                
-                
-            }
-            td{
-                border: solid 1px #DDD;
-                border-collapse: collapse;
-                padding: 3px 8px;
-                text-align: right; 
-            }
-        th {
-            font-weight:bold;
-            width : 50px;
-        }
-    </style>
-</head>
-<body>
-<h6 class="topic2">Cheques Report</h6>
-<p class="from">${range}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Total (Rs) :${total.toFixed(2)}</p>
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var payments = ${ch}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-
-        
-
-        
-        var col = ['Cheque Number','Issue Date', 'Realise Date', 'Company', 'Bank','Amount'];
-        var col2=['chequesNumber','chequesIssueDate','chequesRealiseDate','companyName','chequesBank','chequesAmount'];
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-        var t=0;
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < payments.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                if(!col2[j].toString().localeCompare('chequesIssueDate')){
-                    tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('chequesRealiseDate')){
-                    tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('chequesAmount')){
-                    tabCell.innerHTML=payments[i][col2[j]].toFixed(2);
-                }
-                else{
-                tabCell.innerHTML = payments[i][col2[j]];
-                }
-            }
-
-        }
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text('Cheques Report', 80,18);
+    doc.setFontSize(12);
+    doc.text(`${range}`,20,22);
+    doc.autoTable({
+    startY: 25,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { chequesAmount: { halign: 'right' } }, 
+    head: headRows(),
+    body: bodyRows(cheque.length,cheque),
+    })
+    doc.text(`Total Amount (Rs):${total.toFixed(2)}`,20,doc.previousAutoTable.finalY + 10);
+//fs.writeFileSync('./output.pdf', doc.output())
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
 }
-chequeReportByCmp=(range,company, cheque,total)=>{
-    var ch=JSON.stringify(cheque);
-     return `
-     <!DOCTYPE html>
- <html>
- <head>
-     
-     <style>
-         th, td, p, input {
-             font:8px Times-new-roman;
-         }
- 
-         .topic2{
-                 padding : 0px 130px;
-             }
- 
-         .from{
-             padding:0px 10px 0px
-             }
-             table, th, td 
-             {
-                 table-layout: auto;
-                 border: solid 1px #DDD;
-                 border-collapse: collapse;
-                 padding: 2px 3px;
-                 text-align: center;
-                 min-width :50px;
-                 
-                 
-             }
-             td{
-                 border: solid 1px #DDD;
-                 border-collapse: collapse;
-                 padding: 3px 8px;
-                 text-align: right; 
-             }
-         th {
-             font-weight:bold;
-             width : 50px;
-         }
-     </style>
- </head>
- <body>
- <h6 class="topic2">Cheques Report</h6>
- <p class="from"><b>${company}</b></p>
- <p class="from">${range}</p>
- <p id="showData" class="table" ></p>
- <p class="from">Total (Rs) :${total.toFixed(2)}</p>
- 
- 
- <script>
- 
-     function CreateTableFromJSON() {
-         var payments = ${ch}
- 
-         // EXTRACT VALUE FOR HTML HEADER. 
- 
-         
- 
-         
-         var col = ['Cheque Number','Issue Date', 'Realise Date', 'Company', 'Bank','Amount'];
-         var col2=['chequesNumber','chequesIssueDate','chequesRealiseDate','companyName','chequesBank','chequesAmount'];
- 
-         // CREATE DYNAMIC TABLE.
-         var table = document.createElement("table");
- 
-         // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
- 
-         var tr = table.insertRow(-1);                   // TABLE ROW.
- 
-         for (var i = 0; i < col.length; i++) {
-             var th = document.createElement("th");      // TABLE HEADER.
-             th.innerHTML = col[i];
-             tr.appendChild(th);
-         }
-         var t=0;
-         // ADD JSON DATA TO THE TABLE AS ROWS.
-         for (var i = 0; i < payments.length; i++) {
-             tr = table.insertRow(-1);
- 
-             for (var j = 0; j < col2.length; j++) {
-                 var tabCell = tr.insertCell(-1);
-                 if(!col2[j].toString().localeCompare('chequesIssueDate')){
-                     tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                 }
-                 else if(!col2[j].toString().localeCompare('chequesRealiseDate')){
-                     tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                 }
-                 else if(!col2[j].toString().localeCompare('chequesAmount')){
-                     tabCell.innerHTML=payments[i][col2[j]].toFixed(2);
-                 }
-                 else{
-                 tabCell.innerHTML = payments[i][col2[j]];
-                 }
-             }
- 
-         }
-         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-         var divContainer = document.getElementById("showData");
-         divContainer.innerHTML = "";
-         divContainer.appendChild(table);
-     }
- CreateTableFromJSON();
- 
- </script>
- </body>
- 
- 
- </html>
-     `
- }
+
+//cheque Report by a company
+chequeReportCmp=(range,company, cheque,total)=>{
+
+    var doc = new jsPDF();
+
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text('Cheques Report', 80,18);
+    doc.setFontSize(12);
+    doc.text(`Company : ${company}`,20,22);
+    doc.text(`${range}`,20,26);
+    doc.autoTable({
+    startY: 28,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { chequesAmount: { halign: 'right' } }, 
+    head: headRowsCmp(),
+    body: bodyRowsCmp(cheque.length,cheque),
+    })
+    doc.text(`Total Amount (Rs):${total.toFixed(2)}`,20,doc.previousAutoTable.finalY + 10);
+//fs.writeFileSync('./output.pdf', doc.output())
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
+}
+
+// heades and body for all companies
+function headRows() {
+  return [
+    {chequesNumber :'Cheque Number',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',companyName : 'Company',chequesBank : 'Bank',chequesAmount : 'Amount'},
+  ]
+}
+
+function bodyRows(rowCount,data) {
+var data1=JSON.stringify(data)
+    console.log(data[0].chequesNumber)
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    chequesNumber: currentValue.chequesNumber,
+    chequesIssueDate: currentValue.chequesIssueDate.substring(0,10),
+    chequesRealiseDate: currentValue.chequesRealiseDate.substring(0,10),
+    companyName: currentValue.companyName,
+    chequesBank: currentValue.chequesBank,
+    chequesAmount: currentValue.chequesAmount.toFixed(2),  
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+//heads and body for a single company
+function headRowsCmp() {
+  return [
+    {chequesNumber :'Cheque Number',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',chequesBank : 'Bank',chequesAmount : 'Amount'},
+  ]
+}
+
+function bodyRowsCmp(rowCount,data) {
+var data1=JSON.stringify(data)
+    console.log(data[0].chequesNumber)
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    chequesNumber: currentValue.chequesNumber,
+    chequesIssueDate: currentValue.chequesIssueDate.substring(0,10),
+    chequesRealiseDate: currentValue.chequesRealiseDate.substring(0,10),
+    chequesBank: currentValue.chequesBank,
+    chequesAmount: currentValue.chequesAmount.toFixed(2),  
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+delete global.window;
+delete global.navigator;
+delete global.btoa;
 
 module.exports={
     chequeReport,
-    chequeReportByCmp
+    chequeReportCmp,
 }

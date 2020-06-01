@@ -1,204 +1,113 @@
+global.window = {document: {createElementNS: () => {return {}} }};
+global.navigator = {};
+global.html2pdf = {};
+global.btoa = () => {};
+
+const fs = require('fs')
+const jsPDF = require('jspdf');
+const autoTable=require ('jspdf-autotable');
+
+
+//Daily Delivery Report
 getDailyDeliveryRp=(Deliveries,startDate,endDate)=>{
-    var deli=JSON.stringify(Deliveries);
-    var total=0;
-    var val=0;
-    return `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-    th, td, p, input {
-        font:9px Times-new-roman;
-    }
 
-    .topic2{
-            padding : 0px 130px;
-        }
+    var doc = new jsPDF();
 
-    .from{
-        padding:0px 10px 0px
-        }
-    table, th, td 
-    {
-        table-layout: auto;
-        border: solid 1px #DDD;
-        border-collapse: collapse;
-        padding: 2px 3px;
-        text-align: center;
-        min-width: 30px;
-        
-    }
-    th {
-        font-weight:bold;
-        width : 50px;
-    }
-    </style>
-</head>
-<body>
-<h6 class="topic2">Delivery Report</h6>
-<p class="from">From : ${startDate}   To : ${endDate}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Total Deliveries : ${Deliveries.length}</p>
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text('Delivery Report', 80,18);
+    doc.setFontSize(12);
+    doc.text(`From : ${startDate} To : ${endDate}`,20,22);
+    doc.autoTable({
+    startY: 25,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    head: headRows(),
+    body: bodyRows(Deliveries.length,Deliveries),
+    })
+    doc.text(`Total Deliveries:${Deliveries.length}`,20,doc.previousAutoTable.finalY + 10);
 
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var deliveries = ${deli}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-        
-        var col = ['Delivery Note', 'Delivery Date', 'Lorry', 'Unloading Place','Company','Driver','Status'];
-        var col2=['deliveryNoteNO','deliveryDate','vehicle_vehicleNumber','uploadingPlaceAddress','companyName','driverName','deliveryAcceptance'];
-
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < deliveries.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                if(!col2[j].toString().localeCompare('deliveryDate')){
-                    tabCell.innerHTML=deliveries[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('deliveryDistance')){
-                    tabCell.innerHTML=deliveries[i][col2[j]].toString()+"(km)";
-                }
-                else{
-                tabCell.innerHTML = deliveries[i][col2[j]];
-                }
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
 }
+
+//Delivery Report of Lorry
 getDeliveryReportOfLorry=(deliveries,startDate,endDate,lorry,deliTotal)=>{
-    var deli=JSON.stringify(deliveries)
-    return `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-    th, td, p, input {
-        font:9px Times-new-roman;
-    }
+    var doc = new jsPDF();
 
-    .topic2{
-            padding : 0px 100px;
-        }
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text('Delivery Report', 80,18);
+    doc.setFontSize(12);
+    doc.text(`Lorry : ${lorry.vehicleNumber}`,20,22);
+    doc.text(`From : ${startDate} To : ${endDate}`,20,26);
+    doc.autoTable({
+    startY: 28,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { deliveryPayment: { halign: 'right' } }, 
+    head: headRowsLorry(),
+    body: bodyRowsLorry(deliveries.length,deliveries),
+    })
+    doc.text(`Total Deliveries : ${deliveries.length}`,20,doc.previousAutoTable.finalY + 10);
+    doc.text(`Total Delivery Payments : ${deliTotal.toFixed(2)}`,20,doc.previousAutoTable.finalY + 15)
 
-    .from{
-        padding:0px 10px 0px
-        }
-    table, th, td 
-    {
-        table-layout: auto;
-        border: solid 1px #DDD;
-        border-collapse: collapse;
-        padding: 2px 3px;
-        text-align: center;
-        min-width: 60px;
-        
-    }
-    th {
-        font-weight:bold;
-        width : 50px;
-    }
-    </style>
-</head>
-<body>
-<h6 class="topic2">Delivery Report Of ${lorry.vehicleNumber}</h6>
-<p class="from">From : ${startDate}   To : ${endDate}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Number of Deliveries : ${deliveries.length}</p>
-<p class="from"> Total Delivery Price : ${deliTotal}</p>
-
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var deliveries = ${deli}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-        
-        var col = ['Delivery Note', 'Delivery Date', 'Unloading Place','Distance','Driver','Payment'];
-        var col2=['deliveryNoteNO','deliveryDate','uploadingPlaceAddress','deliveryDistance','driverName','deliveryPayment'];
-
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < deliveries.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                if(!col2[j].toString().localeCompare('deliveryDate')){
-                    tabCell.innerHTML=deliveries[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('deliveryDistance')){
-                    tabCell.innerHTML=deliveries[i][col2[j]].toString()+"(km)";
-                }
-                else{
-                tabCell.innerHTML = deliveries[i][col2[j]];
-                }
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
 }
+
+// heades and body for daily Deliveries
+function headRows() {
+  return [
+    {deliveryNoteNO:'Delivery Note',deliveryDate :'Date', vehicle_vehicleNumber :'Lorry',uploadingPlaceAddress : 'Unloading Place', companyName :'Company', driverName : 'Driver', deliveryAcceptance :'Status'},
+  ]
+}
+
+function bodyRows(rowCount,data) {
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    deliveryNoteNO: currentValue.deliveryNoteNO,
+    deliveryDate: currentValue.deliveryDate.substring(0,10),
+    vehicle_vehicleNumber: currentValue.vehicle_vehicleNumber,
+    uploadingPlaceAddress: currentValue.uploadingPlaceAddress,
+    companyName : currentValue.companyName,
+    driverName : currentValue.driverName,
+    deliveryAcceptance : currentValue.deliveryAcceptance,
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+//heads and body for deliveries done by lorry
+function headRowsLorry() {
+  return [
+    {deliveryNoteNO:'Delivery Note',deliveryDate :'Date',uploadingPlaceAddress : 'Unloading Place', driverName : 'Driver', deliveryDistace :'Distance',deliveryPayment:'Payment'},
+  ]
+}
+
+function bodyRowsLorry(rowCount,data) {
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    deliveryNoteNO: currentValue.deliveryNoteNO,
+    deliveryDate: currentValue.deliveryDate.substring(0,10),
+    uploadingPlaceAddress: currentValue.uploadingPlaceAddress,
+    driverName : currentValue.driverName,
+    deliveryDistace : currentValue.deliveryDistance,
+    deliveryPayment : currentValue.deliveryPayment.toFixed(2),
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+delete global.window;
+delete global.navigator;
+delete global.btoa
 module.exports={
     getDailyDeliveryRp,
     getDeliveryReportOfLorry

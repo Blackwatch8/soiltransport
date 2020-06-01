@@ -64,63 +64,63 @@ var options2={
 }
 //Daily delivery report
 reportRouter.post('/getDailyDeliveryReport', (req, res) => {
+    try{
     const {deliveries,startDate,endDate}=req.body;
-    pdf.create(pdfTemplate.DeliveryRp.getDailyDeliveryRp(deliveries,startDate,endDate), options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    pdfTemplate.DeliveryRp.getDailyDeliveryRp(deliveries,startDate,endDate);
+    res.send(Promise.resolve());
+}catch(e){
+    res.send(Promise.reject);
+}
 });
 //Delivery Report Of the lorry
 reportRouter.post('/getdeliveryreportoflorry', (req, res) => {
+    try{
     const {deliveries,startDate,endDate,lorry,deliTotal}=req.body;
-    pdf.create(pdfTemplate.DeliveryRp.getDeliveryReportOfLorry(deliveries,startDate,endDate,lorry,deliTotal), options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    pdfTemplate.DeliveryRp.getDeliveryReportOfLorry(deliveries,startDate,endDate,lorry,deliTotal)
+    res.send(Promise.resolve());
+    }catch(e){
+    res.send(Promise.reject);
+}
+  
 });
 //Daily Payment Report
 reportRouter.post('/getDailyPaymentReport', (req, res) => {
+    try{
     const {payments,startDate,endDate,payTotal}=req.body;
-    pdf.create(pdfTemplate.PaymentRp.getPaymentReport(payments,startDate,endDate,payTotal),options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    pdfTemplate.PaymentRp.getPaymentReport(payments,startDate,endDate,payTotal)
+      res.send(Promise.resolve());
+  }
+      catch(e){
+    res.send(Promise.reject);
+}
+    
 });
 //Payment Report For Lorry
 reportRouter.post('/getDailyPaymentReportOfLorry', (req, res) => {
+    try{
     const {payments,payTotal,lorry,range}=req.body;
-    pdf.create(pdfTemplate.PaymentRp.getPaymentReportOfLorry(payments,payTotal,lorry,range),options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    pdfTemplate.PaymentRp.getPaymentReportOfLorry(payments,payTotal,lorry,range);
+    res.send(Promise.resolve());
+    }catch(e){
+    res.send(Promise.reject);
+}
+   
 });
 //filterd reports
 reportRouter.post('/getfilteredreportoflorry', (req, res) => {
+    try{
     const {payments,range,lorry,payType,payTotal}=req.body;
-    pdf.create(pdfTemplate.PaymentRp.getFiteredReport(payments,range,lorry,payType,payTotal),options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    pdfTemplate.PaymentRp.getFiteredReport(payments,range,lorry,payType,payTotal)
+      res.send(Promise.resolve());
+      }catch(e){
+    res.send(Promise.reject);
+}
+  
 });
 //Income Report
 reportRouter.post('/getincomereport',(req,res) => {
     const {dayAdvance,maintain,deliveryFee,deliTotal,Diesel,delinums,lorry,range}=req.body;
-    pdf.create(pdfTemplate.PaymentRp.getIncomeReport(dayAdvance,maintain,deliveryFee,deliTotal,Diesel,delinums,lorry,range),options).toFile('result.pdf', (err) => {
+    pdf.create(pdfTemplate.PaymentRp.getIncomeReport(dayAdvance,maintain,deliveryFee,deliTotal,Diesel,delinums,lorry,range),options).toFile('output.pdf', (err) => {
         if(err) {
             res.send(Promise.reject());
         }
@@ -129,21 +129,20 @@ reportRouter.post('/getincomereport',(req,res) => {
     });
 })
 reportRouter.post('/getdieselreport',(req,res) => {
+    try{
     const {diesel,range,payTotal,lorry}=req.body;
-    pdf.create(pdfTemplate.PaymentRp.getDieselReport(diesel,range,payTotal,lorry),options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    pdfTemplate.PaymentRp.getDieselReport(diesel,range,payTotal,lorry)
+    res.send(Promise.resolve());
+    }catch(e){
+    res.send(Promise.reject);
+}
 })
 
 //get delivery Note
 reportRouter.post('/getdeliverynote',(req,res) => {
 
     const {company,lorry,driver,unloadingPlace,capacity,distance,time}=req.body;
-    pdf.create(pdfTemplate.DeliNote.getDeliveryNote(company,lorry,driver,unloadingPlace,capacity,distance,time),options).toFile('result.pdf', (err) => {
+    pdf.create(pdfTemplate.DeliNote.getDeliveryNote(company,lorry,driver,unloadingPlace,capacity,distance,time),options).toFile('output.pdf', (err) => {
         if(err) {
             res.send(Promise.reject());
         }
@@ -153,9 +152,8 @@ reportRouter.post('/getdeliverynote',(req,res) => {
 })
 //get petty cash book
 reportRouter.post('/getpettycashbookRp',(req,res) => {
-
     const {pettyCash,date}=req.body;
-    pdf.create(pdfTemplate.DeliNote.getPettyCashBook(pettyCash,date),options).toFile('result.pdf', (err) => {
+    pdf.create(pdfTemplate.DeliNote.getPettyCashBook(pettyCash,date),options).toFile('output.pdf', (err) => {
         if(err) {
             res.send(Promise.reject());
         }
@@ -166,50 +164,38 @@ reportRouter.post('/getpettycashbookRp',(req,res) => {
 //get invoice
 reportRouter.post('/getinvoiceRp',(req,res) => {
 
+    try{
     const {invoice,company,range,deliTotal}=req.body;
-    pdf.create(pdfTemplate.Invoice.getInvoice(invoice,company,range,deliTotal),options2).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
+    pdfTemplate.Invoice.getInvoice(invoice,company,range,deliTotal)
 
-        res.send(Promise.resolve());
-    });
+    res.send(Promise.resolve());
+    }catch(e){
+    res.send(Promise.reject);
+}
+   
 })
-reportRouter.get('/fetch-pdf', (req, res) => {
-    res.sendFile(`${__dirname}/result.pdf`)
-})
+
 
 //get cheques report
 
 reportRouter.post('/getchequeRp',(req,res) => {
 
     const {range,cheques,total}=req.body;
-    pdf.create(pdfTemplate.Cheque.chequeReport(range,cheques,total),options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    pdfTemplate.Cheque.chequeReport(range,cheques,total)
+    res.send(Promise.resolve());
 })
+
 reportRouter.get('/fetch-pdf', (req, res) => {
-    res.sendFile(`${__dirname}/result.pdf`)
+    res.sendFile(`${__dirname}/output.pdf`)
 })
 
 reportRouter.post('/getchequebycpmRp',(req,res) => {
 
     const {range,company,cheques,total}=req.body;
-    pdf.create(pdfTemplate.Cheque.chequeReportByCmp(range,company,cheques,total),options).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
+    pdfTemplate.Cheque.chequeReportCmp(range,company,cheques,total)
+    res.send(Promise.resolve());
+})
 
-        res.send(Promise.resolve());
-    });
-})
-reportRouter.get('/fetch-pdf', (req, res) => {
-    res.sendFile(`${__dirname}/result.pdf`)
-})
 
 
 module.exports=reportRouter

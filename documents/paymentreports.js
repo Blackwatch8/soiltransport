@@ -1,107 +1,34 @@
+global.window = {document: {createElementNS: () => {return {}} }};
+global.navigator = {};
+global.html2pdf = {};
+global.btoa = () => {};
+
+const fs = require('fs')
+const jsPDF = require('jspdf');
+const autoTable=require ('jspdf-autotable');
 
 getPaymentReport=(Payments,startDate,endDate,payTotal)=>{
-    var pays=JSON.stringify(Payments);
-     return `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-        th, td, p, input {
-            font:9px Times-new-roman;
-        }
+    var doc = new jsPDF();
 
-        .topic2{
-                padding : 0px 130px;
-            }
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text('Payments Report', 80,18);
+    doc.setFontSize(12);
+    doc.text(`From : ${startDate} To :${endDate}`,20,25);
+    doc.autoTable({
+    startY: 26,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { paymentsAmount: { halign: 'right' } }, 
+    head: headRowsPayment(),
+    body: bodyRowsPayment(Payments.length,Payments),
+    })
+    doc.text(`Total Amount (Rs):${payTotal}`,20,doc.previousAutoTable.finalY + 10);
 
-        .from{
-            padding:0px 10px 0px
-            }
-            table, th, td 
-            {
-                table-layout: auto;
-                border: solid 1px #DDD;
-                border-collapse: collapse;
-                padding: 2px 3px;
-                text-align: center;
-                min-width:50px;
-                
-            }
-            td{
-                border: solid 1px #DDD;
-                border-collapse: collapse;
-                padding: 3px 8px;
-                text-align: right; 
-            }
-        th {
-            font-weight:bold;
-            width : 50px;
-        }
-    </style>
-</head>
-<body>
-<h6 class="topic2">Payment Report</h6>
-<p class="from">From : ${startDate}   To : ${endDate}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Total (Rs) :${payTotal}</p>
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var payments = ${pays}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-        
-        var col = ['Pay No','Date', 'Lorry', 'Charge (Rs)', 'Pay Type','Description'];
-        var col2=['paymentsId','paymentsDate','vehicle_vehicleNumber','paymentsAmount','paymentTypeType','paymentsDescription'];
-
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < payments.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                if(!col2[j].toString().localeCompare('paymentsDate')){
-                    tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('paymentsAmount')){
-                    tabCell.innerHTML=payments[i][col2[j]].toFixed(2);
-                }
-                else{
-                tabCell.innerHTML = payments[i][col2[j]];
-                }
-            }
-
-        }
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
+     
 }
 getIncomeReport=(dayAdvance,maintain,deliveryFee,deliTotal,Diesel,delinums,lorry,range)=>{
     return `
@@ -151,47 +78,47 @@ padding:0px 100px 0px
 <p class="date">${range}</p>
 <div class="table">
 <table >
-	<tr>
-		<td class="t1">Lorry </td>
-		<td> : </td>
-		<td>${lorry.vehicleNumber}</td>	
-	</tr>
-	<tr>
-		<td class="t1">Total Deliveries  </td>
-		<td> : </td>
-		<td>${delinums}</td>
-	</tr>
-	<tr>
-		<td class="t1"><h5>Incomes</h5></td>
-	</tr>
-	<tr>
-		<td class="t1">Total Delivery Price </td>
-		<td> : Rs </td>
-		<td>${deliTotal.toFixed(2)}</td>
+    <tr>
+        <td class="t1">Lorry </td>
+        <td> : </td>
+        <td>${lorry.vehicleNumber}</td> 
+    </tr>
+    <tr>
+        <td class="t1">Total Deliveries  </td>
+        <td> : </td>
+        <td>${delinums}</td>
+    </tr>
+    <tr>
+        <td class="t1"><h5>Incomes</h5></td>
+    </tr>
+    <tr>
+        <td class="t1">Total Delivery Price </td>
+        <td> : Rs </td>
+        <td>${deliTotal.toFixed(2)}</td>
     </tr>
     <tr>
     <td class="t1"><h5>Expenses</h5></td>
 </tr>
-	<tr>
-		<td class="t1">Total Day Advance </td>
-		<td> : Rs </td>
-		<td>${dayAdvance.toFixed(2)}</td>
-	</tr>
-	<tr>
-		<td class="t1">Total Repair Fee </td>
-		<td> : Rs </td>
-		<td>${maintain.toFixed(2)}</td>
-	</tr>
-	<tr>
-		<td class="t1">Total Cash Payments </td>
-		<td> : Rs </td>
-		<td>${deliveryFee.toFixed(2)}</td>
+    <tr>
+        <td class="t1">Total Day Advance </td>
+        <td> : Rs </td>
+        <td>${dayAdvance.toFixed(2)}</td>
+    </tr>
+    <tr>
+        <td class="t1">Total Repair Fee </td>
+        <td> : Rs </td>
+        <td>${maintain.toFixed(2)}</td>
+    </tr>
+    <tr>
+        <td class="t1">Total Cash Payments </td>
+        <td> : Rs </td>
+        <td>${deliveryFee.toFixed(2)}</td>
     </tr>
 
-	<tr>
-		<td class="t1">Total Diesel Fee  </td>
-		<td> : Rs </td>
-		<td>${Diesel.toFixed(2)}</td>
+    <tr>
+        <td class="t1">Total Diesel Fee  </td>
+        <td> : Rs </td>
+        <td>${Diesel.toFixed(2)}</td>
     </tr>
     <tr><td><td></tr>
     <tr><td><td></tr>
@@ -200,11 +127,11 @@ padding:0px 100px 0px
         <td> : Rs </td>
         <td id="total"></td>
     </tr>
-	<tr>
-		<td class="t1"><h6>Net Income</h6></td>
-		<td> : Rs </td>
-		<td id="balance"></td>
-	</tr>
+    <tr>
+        <td class="t1"><h6>Net Income</h6></td>
+        <td> : Rs </td>
+        <td id="balance"></td>
+    </tr>
 </table>
 </div>
 <script>
@@ -224,329 +151,180 @@ padding:0px 100px 0px
 
 
 </html>
-
-    `
+`
 }
 getPaymentReportOfLorry=(payments,payTotal,lorry,range)=>{
-    pays=JSON.stringify(payments);
-    return  `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-        th, td, p, input {
-            font:10px Times-new-roman;
-        }
-        .topic{
-            padding : 0px 100px;
-        }
+    var doc = new jsPDF();
 
-        .topic2{
-                padding : 0px 130px;
-            }
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text('Payments Report', 80,18);
+    doc.setFontSize(12);
+    doc.text(`Lorry : ${lorry.vehicleNumber}`,20,22)
+    doc.text(`${range}`,20,26);
+    doc.autoTable({
+    startY: 28,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { paymentsAmount: { halign: 'right' } }, 
+    head: headRowsLorryPayment(),
+    body: bodyRowsLorryPayment(payments.length,payments),
+    })
+    doc.text(`Total Amount (Rs):${payTotal.toFixed(2)}`,20,doc.previousAutoTable.finalY + 10);
 
-        .from{
-            padding:0px 10px 0px
-            font:8px Times-new-roman;
-            }
-        table, th, td 
-        {
-            table-layout: auto;
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-            min-width:60px;
-            
-        }
-        td{
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 3px 8px;
-            text-align: right; 
-        }
-        th {
-            font-weight:bold;
-            width : 50px;
-        }
-    </style>
-</head>
-<body>
-<h6 class="topic">Payment Report Of ${lorry.vehicleNumber}</h6>
-<p class="from">${range}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Total Payments : ${payTotal.toFixed(2)}</p>
-
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var payments = ${pays}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-        
-        var col = ['Pay No','Date', 'Charge (Rs)', 'Pay Type','Description'];
-        var col2=['paymentsId','paymentsDate','paymentsAmount','paymentTypeType','paymentsDescription'];
-
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < payments.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                if(!col2[j].toString().localeCompare('paymentsDate')){
-                    tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('paymentsAmount')){
-                    tabCell.innerHTML=payments[i][col2[j]].toFixed(2);
-                }
-                else{
-                tabCell.innerHTML = payments[i][col2[j]];
-                }
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
 }
 //Get Day Adanced Report
 getFiteredReport=(Payments,range,lorry,payType,payTotal)=>{
-    var pays=JSON.stringify(Payments);
-    return `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-        th, td, p, input {
-            font:9px Times-new-roman;
-        }
+        var doc = new jsPDF();
 
-        .topic2{
-                padding : 0px 100px;
-            }
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text(`${payType} Report`, 70,18);
+    doc.setFontSize(12);
+    doc.text(`Lorry : ${lorry.vehicleNumber}`,20,22)
+    doc.text(`${range}`,20,26);
+    doc.autoTable({
+    startY: 28,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { paymentsAmount: { halign: 'right' } }, 
+    head: headRowsFilteredPayment(),
+    body: bodyRowsFilteredPayment(Payments.length,Payments),
+    })
+    doc.text(`Total Amount (Rs):${payTotal.toFixed(2)}`,20,doc.previousAutoTable.finalY + 10);
 
-        .from{
-            padding:0px 10px 0px
-            }
-        table, th, td 
-        {
-            table-layout: auto;
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-            min-width: 90px;
-            
-        }
-        border: solid 1px #DDD;
-        border-collapse: collapse;
-        padding: 3px 8px;
-        text-align: right; 
-    }
-        th {
-            font-weight:bold;
-            width : 50px;
-        }
-    </style>
-</head>
-<body>
-<h6 class="topic2">${payType} Report Of ${lorry.vehicleNumber}</h6>
-<p class="from">${range}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Total Payments : ${payTotal.toFixed(2)}</p>
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var payments = ${pays}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-        
-        var col = ['Pay No','Date', 'Charge (Rs)','Description'];
-        var col2=['paymentsId','paymentsDate','paymentsAmount','paymentsDescription'];
-
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < payments.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                if(!col2[j].toString().localeCompare('paymentsDate')){
-                    tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('paymentsAmount')){
-                    tabCell.innerHTML=payments[i][col2[j]].toFixed(2);
-                }
-                else{
-                tabCell.innerHTML = payments[i][col2[j]];
-                }
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
 }
 
 //Diesel Report
 getDieselReport=(diesel,range,payTotal,lorry)=>{
-    var die=JSON.stringify(diesel);
-    console.log(die)
-    return `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-        th, td, p, input {
-            font:9px Times-new-roman;
-        }
+    var doc = new jsPDF();
 
-        .topic2{
-                padding : 0px 100px;
-            }
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text(`Diesel Report`, 80,18);
+    doc.setFontSize(12);
+    doc.text(`Lorry : ${lorry.vehicleNumber}`,20,22)
+    doc.text(`${range}`,20,26);
+    doc.autoTable({
+    startY: 28,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { paymentsAmount: { halign: 'right' } }, 
+    head: headRowsDiesel(),
+    body: bodyRowsDiesel(diesel.length,diesel),
+    })
+    doc.text(`Total Amount (Rs):${payTotal.toFixed(2)}`,20,doc.previousAutoTable.finalY + 10);
 
-        .from{
-            padding:0px 10px 0px
-            }
-        table, th
-        {
-            table-layout: auto;
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-            min-width: 120px;
-            
-        }
-        th {
-            font-weight:bold;
-            width : 50px;
-        }
-        td{
-            text-align: right;
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px px;
-        }
-    </style>
-</head>
-<body>
-<h6 class="topic2">Diesel Fee Report Of ${lorry.vehicleNumber}</h6>
-<p class="from">${range}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Total Payments : ${payTotal.toFixed(2)}</p>
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var payments = ${die}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-        
-        var col = ['Date','Liters', 'Price (Rs)'];
-        var col2=['paymentsDate','dieselFeeLiters','paymentsAmount'];
-
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < payments.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                if(!col2[j].toString().localeCompare('paymentsDate')){
-                    tabCell.innerHTML=payments[i][col2[j]].toString().substring(0,10);
-                }
-                else if(!col2[j].toString().localeCompare('paymentsAmount')){
-                    tabCell.innerHTML=payments[i][col2[j]].toFixed(2);
-                }
-                else{
-                tabCell.innerHTML = payments[i][col2[j]];
-                }
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
+fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+})
 }
+
+//heads for payment report
+function headRowsPayment() {
+  return [
+    {paymentsId : 'Payment No',paymentsDate : 'Date',vehicle_vehicleNumber : 'Lorry',paymentsAmount : 'Amount', paymentTypeType : 'Payment Type',paymentsDescription :'Description'},
+  ]
+}
+
+//heads for payment report of lorry
+function headRowsLorryPayment() {
+  return [
+    {paymentsId : 'Payment No',paymentsDate : 'Date',paymentsAmount : 'Amount', paymentTypeType : 'Payment Type',paymentsDescription :'Description'},
+  ]
+}
+
+
+//heads for filtered report
+function headRowsFilteredPayment() {
+  return [
+    {paymentsId : 'Payment No',paymentsDate : 'Date',paymentsAmount : 'Amount',paymentsDescription :'Description'},
+  ]
+}
+
+//heads for Diesel report
+function headRowsDiesel() {
+  return [
+    {paymentsDate : 'Date',dieselFeeLiters :'Diesel Liters',paymentsAmount : 'Amount'},
+  ]
+}
+
+//Bodies for reports
+
+//Body for payment report
+function bodyRowsPayment(rowCount,data) {
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    paymentsId : currentValue.paymentsId,
+    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    vehicle_vehicleNumber : currentValue.vehicle_vehicleNumber,
+    paymentsAmount : currentValue.paymentsAmount.toFixed(2),
+    paymentTypeType : currentValue.paymentTypeType,
+    paymentsDescription : currentValue.paymentsDescription,
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+//Body for Lorry payment report
+function bodyRowsLorryPayment(rowCount,data) {
+    console.log(data)
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    paymentsId : currentValue.paymentsId,
+    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    paymentsAmount : currentValue.paymentsAmount.toFixed(2),
+    paymentTypeType : currentValue.paymentTypeType,
+    paymentsDescription : currentValue.paymentsDescription,
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+//Body for filtered report
+function bodyRowsFilteredPayment(rowCount,data) {
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    paymentsId : currentValue.paymentsId,
+    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    paymentsAmount : currentValue.paymentsAmount.toFixed(2),
+    paymentsDescription : currentValue.paymentsDescription,
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+//Body for diesel report
+function bodyRowsDiesel(rowCount,data) {
+  rowCount = rowCount || 10
+    let body = data.reduce((accumulator, currentValue) => {
+  accumulator.push({
+    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    dieselFeeLiters :currentValue.dieselFeeLiters,
+    paymentsAmount : currentValue.paymentsAmount.toFixed(2),
+
+  });
+  return accumulator;
+},[]);
+  return body
+}
+
+delete global.window;
+delete global.navigator;
+delete global.btoa;
+
 module.exports={
     getPaymentReport,
     getIncomeReport,

@@ -7,6 +7,7 @@ getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
     <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title></title>
     <style>
     th, td, p, input {

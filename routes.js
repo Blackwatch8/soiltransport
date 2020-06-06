@@ -503,14 +503,12 @@ router.post('/deletedelivery', async (req,res)=>{
   }
 })
 
-//Routes for rates begins here
-router.get('/getrates', async (req,res) => {
+//Routes for get dtabase backup begins here
+router.get('/getDb', async (req,res) => {
   try{
-    let rate= await DB.Rate.getRates();
-    res.json(rate);
+    res.sendFile(`${__dirname}/dbBackups/dbbackup.zip`)
   }catch(e){
     console.log(e);
-    res.sendStatus(500);
   }
 })
 

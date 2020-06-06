@@ -6,7 +6,7 @@ const Lorries=require('./lorry')
 const UnloadingPlaces=require('./unloading-place')
 const Drivers=require('./driver')
 const Delivery=require('./delivery')
-const Rate=require('./rates')
+const DbBack=require('./dbback')
 const Payments= require('./payments')
 const Cheques=require('./cheque')
 const Invoice=require('./invoice')
@@ -23,7 +23,7 @@ module.exports={
     UnloadingPlaces,
     Drivers,
     Delivery,
-    Rate,
+    DbBack,
     Payments,
     Cheques,
     Invoice,

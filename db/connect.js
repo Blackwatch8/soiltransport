@@ -17,10 +17,10 @@ const Sequelize=require("sequelize")
 
 var dbConfig = {
     connectionLimit : 10,
-    host            : 'us-cdbr-east-06.cleardb.net',
-    user            : 'bcf5aad9fc6b4b',
-    password        : '6f0a84a4',
-    database        : 'heroku_56236b0149670d1'
+    host            : 'us-cdbr-east-05.cleardb.net',
+    user            : 'bb845d734a4f04',
+    password        : '71160976',
+    database        : 'heroku_c09fd48e58d7734'
   };
   var Connection =mysql.createPool(dbConfig);
 

@@ -69,7 +69,7 @@ reportRouter.post('/getDailyDeliveryReport', (req, res) => {
     pdfTemplate.DeliveryRp.getDailyDeliveryRp(deliveries,startDate,endDate);
     res.send(Promise.resolve());
 }catch(e){
-    res.send(Promise.reject);
+    res.send(Promise.reject());
 }
 });
 //Delivery Report Of the lorry
@@ -79,7 +79,7 @@ reportRouter.post('/getdeliveryreportoflorry', (req, res) => {
     pdfTemplate.DeliveryRp.getDeliveryReportOfLorry(deliveries,startDate,endDate,lorry,deliTotal)
     res.send(Promise.resolve());
     }catch(e){
-    res.send(Promise.reject);
+    res.send(Promise.reject());
 }
   
 });
@@ -91,7 +91,7 @@ reportRouter.post('/getDailyPaymentReport', (req, res) => {
       res.send(Promise.resolve());
   }
       catch(e){
-    res.send(Promise.reject);
+    res.send(Promise.reject());
 }
     
 });
@@ -102,7 +102,7 @@ reportRouter.post('/getDailyPaymentReportOfLorry', (req, res) => {
     pdfTemplate.PaymentRp.getPaymentReportOfLorry(payments,payTotal,lorry,range);
     res.send(Promise.resolve());
     }catch(e){
-    res.send(Promise.reject);
+    res.send(Promise.reject());
 }
    
 });
@@ -113,7 +113,7 @@ reportRouter.post('/getfilteredreportoflorry', (req, res) => {
     pdfTemplate.PaymentRp.getFiteredReport(payments,range,lorry,payType,payTotal)
       res.send(Promise.resolve());
       }catch(e){
-    res.send(Promise.reject);
+    res.send(Promise.reject());
 }
   
 });
@@ -134,21 +134,21 @@ reportRouter.post('/getdieselreport',(req,res) => {
     pdfTemplate.PaymentRp.getDieselReport(diesel,range,payTotal,lorry)
     res.send(Promise.resolve());
     }catch(e){
-    res.send(Promise.reject);
+    res.send(Promise.reject());
 }
 })
 
 //get delivery Note
 reportRouter.post('/getdeliverynote',(req,res) => {
 
+    try{
     const {company,lorry,driver,unloadingPlace,capacity,distance,time}=req.body;
-    pdf.create(pdfTemplate.DeliNote.getDeliveryNote(company,lorry,driver,unloadingPlace,capacity,distance,time),options).toFile('output.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
+    pdfTemplate.DeliNote.getDeliveryNote(company,lorry,driver,unloadingPlace,capacity,distance,time)
+    res.send(Promise.resolve());
         }
-
-        res.send(Promise.resolve());
-    });
+    catch(e){
+        res.send(Promise.reject());
+    }
 })
 //get petty cash book
 reportRouter.post('/getpettycashbookRp',(req,res) => {
@@ -170,7 +170,7 @@ reportRouter.post('/getinvoiceRp',(req,res) => {
 
     res.send(Promise.resolve());
     }catch(e){
-    res.send(Promise.reject);
+    res.send(Promise.reject());
 }
    
 })

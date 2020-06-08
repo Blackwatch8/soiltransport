@@ -37,9 +37,9 @@ getDieselDetailsOfLorry= async(startDate,endDate,vehicleNumber)=>{
     
     return new Promise((resolve,reject) =>{
             Connection.query(`SELECT dieselFeeId, dieselFeeLiters,LorryPayments.paymentsDate,LorryPayments.paymentsAmount,LorryPayments.paymentsDescription 
-            FROM dieselFee,LorryPayments WHERE LorryPayments.paymentType_paymentTypeId=5 AND 
+            FROM dieselFee,LorryPayments WHERE LorryPayments.paymentsId=dieselFee.dieselFeeId AND 
             LorryPayments.vehicle_vehicleNumber='${vehicleNumber}'
-             AND LorryPayments.paymentsDate BETWEEN '${startDate}' AND '${endDate}'`,(err,results) =>{
+             AND LorryPayments.paymentsDate BETWEEN '${startDate}' AND '${endDate}' group by  dieselFeeId`,(err,results) =>{
                  if(err){
                      reject(err);
                  }

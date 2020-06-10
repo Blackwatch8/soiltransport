@@ -1,12 +1,13 @@
 
 Connection = require('./connect')
 
-addDelivery= async (Distance,deliveryDate,deliveryTime,payment,vehicleNo,driverLiscence,unloadingPlace) => {
+addDelivery= async (DeliNote,Distance,deliveryDate,deliveryTime,payment,vehicleNo,driverLiscence,unloadingPlace) => {
+    console.log(DeliNote)
     return new Promise((resolve,reject) => {
-        Connection.query(`insert into delivery (deliveryDistance, deliveryDate,
+        Connection.query(`insert into delivery (deliveryNoteNo,deliveryDistance, deliveryDate,
             deliveryPayment, deliveryDepartureTime, vehicle_vehicleNumber,
              uploadingPlace_uploadingPlaceId, driver_driverLicenseNo)
-             values ('${Distance}','${deliveryDate}','${payment}','${deliveryTime}',
+             values ('${DeliNote}','${Distance}','${deliveryDate}','${payment}','${deliveryTime}',
              '${vehicleNo}','${unloadingPlace}','${driverLiscence}')`,(err,results) => {
                  if(err){
                     reject(err)
@@ -133,6 +134,18 @@ deleteDelivery=(deliveryNoteNO)=>{
         });
     })
 }
+getLastDeliId=async () =>{
+    return new Promise((resolve,reject) =>{
+        Connection.query(`SELECT deliveryNoteNo FROM delivery ORDER BY deliveryNoteNo DESC LIMIT 1 `,(err,results)=>{
+            if(err){
+                reject(err);
+            }
+            else{
+                resolve(results);
+            }
+        })
+    })
+}
 
 
 module.exports={
@@ -143,5 +156,6 @@ module.exports={
     getDailyDeliveryByLorry,
     getDeliveriesInRange,
     getDeliveriesInRangeByLorry,
-    deleteDelivery
+    deleteDelivery,
+    getLastDeliId
 }

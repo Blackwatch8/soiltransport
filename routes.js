@@ -402,8 +402,8 @@ router.post('/updatedriver', async (req,res) => {
 //Routes for deliveries begins here
 router.post('/adddelivery', async(req,res) => {
   try{
-    const {Distance,deliveryDate,deliveryTime,payment,vehicleNo,driverLiscence,unloadingPlace}=req.body;
-    await DB.Delivery.addDelivery(Distance,deliveryDate,deliveryTime,payment,vehicleNo,driverLiscence,unloadingPlace);
+    const {DeliNote,Distance,deliveryDate,deliveryTime,payment,vehicleNo,driverLiscence,unloadingPlace}=req.body;
+    await DB.Delivery.addDelivery(DeliNote,Distance,deliveryDate,deliveryTime,payment,vehicleNo,driverLiscence,unloadingPlace);
 
     let token={
       status: 'SuccessfullyAdded'
@@ -607,10 +607,22 @@ router.post('/addpettycash', async (req,res) =>{
     res.send(token)
   }
 })
+//get last payment id
 router.get('/getlastpayid',async (req,res) =>{
   try{
     let payment= await DB.Payments.getLastPaymentId();
     res.send(payment);
+  }catch(e){
+    console.log(e);
+    res.sendStatus(500);
+  }
+
+})
+//get last delivery note
+router.get('/getlastdeliid',async (req,res) =>{
+  try{
+    let deli= await DB.Delivery.getLastDeliId();
+    res.send(deli);
   }catch(e){
     console.log(e);
     res.sendStatus(500);

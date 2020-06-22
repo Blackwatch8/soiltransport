@@ -45,7 +45,7 @@ mysqldump
 
 })
     //Zipping database
-    cron.schedule('32 16 * * *', dumpDb=() => {
+    cron.schedule('30 16 * * *', dumpDb=() => {
         console.log("Zipping")
         nodeJsZip.zip([dir],{
             name : "dbbackup",

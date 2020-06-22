@@ -20,11 +20,12 @@ getInvoice=(invoice,company,range,deliTotal)=>{
     startY: 29,
     theme : 'grid',
     headStyles: { fillColor: [128,128,128] }, 
-    columnStyles: { unloadingPlaceIncomeRate: { halign: 'right' } }, 
+    columnStyles: { unloadingPlaceIncomeRate: { halign: 'right' },total :{halign : 'right'} }, 
     head: headRows(),
     body: bodyRows(invoice.length,invoice),
     })
-    doc.text(`Total Amount (Rs):${deliTotal.toFixed(2)}`,20,doc.previousAutoTable.finalY + 10);
+    doc.setFontSize(9);
+    doc.text(`Total Amount (Rs):${deliTotal.toFixed(2)}`,160,doc.previousAutoTable.finalY + 10);
 
 fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
   if (err) throw err;
@@ -35,7 +36,7 @@ fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) =>
 // heades and body for invoice
 function headRows() {
   return [
-    {deliveryNoteNO :'Delivery Note',deliveryDate : 'Date', vehicle_vehicleNumber : 'Lorry',uploadingPlaceAddress : 'Unloading Place',vehicleCapacity :'Cubes',unloadingPlaceIncomeRate : 'Rate'},
+    {deliveryNoteNO :'Delivery Note',deliveryDate : 'Date', vehicle_vehicleNumber : 'Lorry',uploadingPlaceAddress : 'Unloading Place',vehicleCapacity :'Cubes',unloadingPlaceIncomeRate : '1 Cube Rate',total :'Total'},
   ]
 }
 
@@ -48,7 +49,8 @@ function bodyRows(rowCount,data) {
     vehicle_vehicleNumber : currentValue.vehicle_vehicleNumber,
     uploadingPlaceAddress : currentValue.uploadingPlaceAddress,
     vehicleCapacity : currentValue.vehicleCapacity,
-    unloadingPlaceIncomeRate : currentValue.unloadingPlaceIncomeRate.toFixed(2)
+    unloadingPlaceIncomeRate : currentValue.unloadingPlaceIncomeRate.toFixed(2),
+    total : (currentValue.vehicleCapacity *currentValue.unloadingPlaceIncomeRate).toFixed(2)
 
   });
   return accumulator;

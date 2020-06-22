@@ -21,39 +21,40 @@ getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
 
 	 }
 
-    var doc = new jsPDF();
-	doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 70,25);
-	doc.setFontSize(13);
-	doc.text('Delivery Note',95,35);
-	doc.text('N0.524, Lot 7, Hadungamuwa, Matale',75,40);
-	doc.text('Tel:0765 505 252/ 0717 615 911',80,45);
-	doc.setFontSize(12);
-	doc.text('Date ',70,50);
-	doc.text(`: ${date}`,120,50)
-	doc.text('Comapny ',70,55);
-	doc.text(`: ${company}`,120,55);
-	doc.text('Lorry Name ',70,60);
-	doc.text(`: ${lorry}`,120,60)
-	doc.text(`Driver's Name `,70,65);
-	doc.text(`: ${driver}`,120,65);
-	doc.text('Load Capacity ',70,70);
-	doc.text(`: ${capacity} cube(s)`,120,70);
-	doc.text('Unloading Place',70,75);
-	doc.text(`: ${unloadingPlace}`,120,75)
-	doc.text('Distance ',70,80);
-	doc.text(`: ${distance} km`,120,80);
-	doc.text('Departure Time ',70,85);
-	doc.text(`: ${time} ${t}`,120,85)
+	var doc = new jsPDF('l', 'mm', [100, 150]);
+	doc.setFontSize(5);
+	doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 13,5);
+	doc.setFontSize(4);
+	doc.text('Delivery Note',23,7);
+	doc.text('N0.524, Lot 7, Hadungamuwa, Matale',15,8.5);
+	doc.text('Tel:0765 505 252/ 0717 615 911',16,10);
+	doc.setFontSize(3);
+	doc.text('Date ',15,12);
+	doc.text(`: ${date}`,30,12)
+	doc.text('Comapny ',15,14);
+	doc.text(`: ${company}`,30,14);
+	doc.text('Lorry Name ',15,16);
+	doc.text(`: ${lorry}`,30,16)
+	doc.text(`Driver's Name `,15,18);
+	doc.text(`: ${driver}`,30,18);
+	doc.text('Load Capacity ',15,20);
+	doc.text(`: ${capacity} cube(s)`,30,20);
+	doc.text('Unloading Place',15,22);
+	doc.text(`: ${unloadingPlace}`,30,22)
+	doc.text('Distance ',15,24);
+	doc.text(`: ${distance} km`,30,24);
+	doc.text('Departure Time ',15,26);
+	doc.text(`: ${time} ${t}`,30,26)
 
-	doc.text('Acceptance ',95,95);
+	doc.text('Acceptance ',25,29);
 
-	doc.text('Accepted By ',70,105);
-	doc.text(': ........................',120,105);
-	doc.text('Accepted Time ',70,110);
-	doc.text(': ........................',120,110);
-	doc.text('Signature ',70,115);
-	doc.text(': ........................',120,115);
-	doc.rect(40, 20, doc.internal.pageSize.width - 60, doc.internal.pageSize.height - 180, 'S');
+	doc.text('Accepted By ',15,32);
+	doc.text(': ........................',30,32);
+	doc.text('Accepted Time ',15,34);
+	doc.text(': ........................',30,34);
+	doc.text('Signature ',15.36);
+	doc.text(': ........................',30,36);
+	doc.rect(1, 1, doc.internal.pageSize.width - 2, doc.internal.pageSize.height - 2, 'S');
 	doc.autoPrint();
 	fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
 		if (err) throw err;

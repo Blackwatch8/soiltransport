@@ -62,7 +62,7 @@ fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) =>
 // heades and body for all companies
 function headRows() {
   return [
-    {chequesNumber :'Cheque Number',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',companyName : 'Company',chequesBank : 'Bank',chequesAmount : 'Amount'},
+    {chequesNumber :'Cheque No/Decs',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',companyName : 'Company',chequesBank : 'Bank',chequesAmount : 'Amount'},
   ]
 }
 
@@ -87,7 +87,7 @@ var data1=JSON.stringify(data)
 //heads and body for a single company
 function headRowsCmp() {
   return [
-    {chequesNumber :'Cheque Number',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',chequesBank : 'Bank',chequesAmount : 'Amount'},
+    {chequesNumber :'Cheque No/Decs',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',chequesBank : 'Bank',chequesAmount : 'Amount'},
   ]
 }
 

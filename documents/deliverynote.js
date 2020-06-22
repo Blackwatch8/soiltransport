@@ -21,7 +21,7 @@ getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
 
 	 }
 
-	var doc = new jsPDF('l', 'mm', [100, 150]);
+	var doc = new jsPDF('l', 'mm', [120, 150]);
 	doc.setFontSize(5);
 	doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 13,5);
 	doc.setFontSize(4);
@@ -44,16 +44,15 @@ getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
 	doc.text('Distance ',15,24);
 	doc.text(`: ${distance} km`,30,24);
 	doc.text('Departure Time ',15,26);
-	doc.text(`: ${time} ${t}`,30,26)
+    doc.text(`: ${time} ${t}`,30,26);
+    doc.text(`Acceptance`,25,29);
+    doc.text('Accepted by',15,32);
+    doc.text(': ..................',30,32);
+    doc.text('Accepted Time',15,34);
+    doc.text(': ..................',30,34);
+    doc.text('Signature',15,36);
+    doc.text(': ..................',30,36);
 
-	doc.text('Acceptance ',25,29);
-
-	doc.text('Accepted By ',15,32);
-	doc.text(': ........................',30,32);
-	doc.text('Accepted Time ',15,34);
-	doc.text(': ........................',30,34);
-	doc.text('Signature ',15.36);
-	doc.text(': ........................',30,36);
 	doc.rect(1, 1, doc.internal.pageSize.width - 2, doc.internal.pageSize.height - 2, 'S');
 	doc.autoPrint();
 	fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {

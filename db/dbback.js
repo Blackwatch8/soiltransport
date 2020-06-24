@@ -58,6 +58,7 @@ zipDir=()=>{
     zip .on('exit', function(code) {
         console.log("done");
     });
+    return 1;
 }
 module.exports={
     dumpDb,

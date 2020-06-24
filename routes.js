@@ -506,8 +506,10 @@ router.post('/deletedelivery', async (req,res)=>{
 //Routes for get dtabase backup begins here
 router.get('/getDb', async (req,res) => {
   try{
-    //DB.DbBack.zipDir();
-    res.sendFile(`${__dirname}/dbBackups/dbbackup.zip`)
+    if(DB.DbBack.zipDir()==1){
+      res.sendFile(`${__dirname}/dbBackups/archive.zip`)
+    }
+    
   }catch(e){
     console.log(e);
   }

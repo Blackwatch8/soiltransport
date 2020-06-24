@@ -10,26 +10,8 @@ var nodeJsZip = require("nodeJs-zip");
 
 var dir = path.join(__dirname,"../dbBackups");
 
-
-    //Zipping database
-    const job2= cron1.job('43 * * * *', () => {
-        console.log("Zipping")
-        nodeJsZip.zip([dir],{
-            name : "dbbackup",
-            dir : dir,
-            filter : false
-        });
-    })
-zipDir=()=>{
-    zip = spawn('zip',['-P', '687687' , `${dir}/archive.zip`,'-r', dir]);
-    zip .on('exit', function(code) {
-        console.log("done");
-    });
-    return 1;
-}
-//dumping database
-const job = cron1.job('* * * * *', () =>{ 
-    console.log("Running task");
+// database is dumpded every day 4.30 pm
+const job=cron1.job('59 * * * *', () => {
     fs.readdir(dir, (err, files) => {
         if (err) throw err;
       
@@ -61,10 +43,29 @@ mysqldump
     .on('error', function (err) {
         console.log(err)
     });
+
 })
+    //Zipping database
+    const job2= cron1.job('43 * * * *', () => {
+        console.log("Zipping")
+        nodeJsZip.zip([dir],{
+            name : "dbbackup",
+            dir : dir,
+            filter : false
+        });
+    })
+zipDir=()=>{
+    zip = spawn('zip',['-P', '687687' , `${dir}/archive.zip`,'-r', dir]);
+    zip .on('exit', function(code) {
+        console.log("done");
+    });
+    return 1;
+}
+
 job.start();
-job2.start()
+//job2.start()
 
 module.exports={
+
     zipDir
 }

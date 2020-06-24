@@ -11,7 +11,8 @@ var nodeJsZip = require("nodeJs-zip");
 var dir = path.join(__dirname,"../dbBackups");
 
 // database is dumpded every day 4.30 pm
-const job=cron1.job('2 * * * *', dumpDb=() => {
+const job=cron1.job('20 * * * *',() => {
+    console.log("Task running")
     fs.readdir(dir, (err, files) => {
         if (err) throw err;
       
@@ -31,8 +32,6 @@ const job=cron1.job('2 * * * *', dumpDb=() => {
         'us-cdbr-east-05.cleardb.net',
         'heroku_c09fd48e58d7734',
     ]);
-
-
 mysqldump
     .stdout
     .pipe(wstream)
@@ -45,8 +44,10 @@ mysqldump
     });
 
 })
+job.start();
+
     //Zipping database
-    const job2= cron1.job('5 * * * *', dumpDb=() => {
+    const job2= cron1.job('22 * * * *', () => {
         console.log("Zipping")
         nodeJsZip.zip([dir],{
             name : "dbbackup",
@@ -54,6 +55,8 @@ mysqldump
             filter : false
         });
     })
+job2.start();
+
 zipDir=()=>{
     zip = spawn('zip',['-P', '687687' , `${dir}/archive.zip`,'-r', dir]);
     zip .on('exit', function(code) {
@@ -61,10 +64,9 @@ zipDir=()=>{
     });
     return 1;
 }
-job.start();
-job2.start();
+
+
 
 module.exports={
-    dumpDb,
     zipDir
 }

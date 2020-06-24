@@ -10,9 +10,26 @@ var nodeJsZip = require("nodeJs-zip");
 
 var dir = path.join(__dirname,"../dbBackups");
 
-// database is dumpded every day 4.30 pm
-const job=cron1.job('20 * * * *',() => {
-    console.log("Task running")
+
+    //Zipping database
+    const job2= cron1.job('43 * * * *', () => {
+        console.log("Zipping")
+        nodeJsZip.zip([dir],{
+            name : "dbbackup",
+            dir : dir,
+            filter : false
+        });
+    })
+zipDir=()=>{
+    zip = spawn('zip',['-P', '687687' , `${dir}/archive.zip`,'-r', dir]);
+    zip .on('exit', function(code) {
+        console.log("done");
+    });
+    return 1;
+}
+//dumping database
+const job = cron1.job('* * * * *', () =>{ 
+    console.log("Running task");
     fs.readdir(dir, (err, files) => {
         if (err) throw err;
       
@@ -32,6 +49,8 @@ const job=cron1.job('20 * * * *',() => {
         'us-cdbr-east-05.cleardb.net',
         'heroku_c09fd48e58d7734',
     ]);
+
+
 mysqldump
     .stdout
     .pipe(wstream)
@@ -42,30 +61,9 @@ mysqldump
     .on('error', function (err) {
         console.log(err)
     });
-
 })
 job.start();
-
-    //Zipping database
-    const job2= cron1.job('22 * * * *', () => {
-        console.log("Zipping")
-        nodeJsZip.zip([dir],{
-            name : "dbbackup",
-            dir : dir,
-            filter : false
-        });
-    })
-job2.start();
-
-zipDir=()=>{
-    zip = spawn('zip',['-P', '687687' , `${dir}/archive.zip`,'-r', dir]);
-    zip .on('exit', function(code) {
-        console.log("done");
-    });
-    return 1;
-}
-
-
+job2.start()
 
 module.exports={
     zipDir

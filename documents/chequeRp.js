@@ -7,6 +7,12 @@ const fs = require('fs')
 const jsPDF = require('jspdf');
 const autoTable=require ('jspdf-autotable');
 
+  //formate date 
+  dateFormater=(cell)=>{
+    var stDate = new Date(cell);
+    var date = stDate.getFullYear() + '-' + (stDate.getMonth() + 1) + '-' + stDate.getDate();
+     return `${date}`
+   }
 
 //All the cheque Report
 chequeReport=(range, cheque,total)=>{
@@ -62,7 +68,7 @@ fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) =>
 // heades and body for all companies
 function headRows() {
   return [
-    {chequesNumber :'Cheque No/Decs',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',companyName : 'Company',chequesBank : 'Bank',chequesAmount : 'Amount'},
+    {chequesNumber :'Cheque No/Desc',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',companyName : 'Company',chequesBank : 'Bank',chequesAmount : 'Amount'},
   ]
 }
 
@@ -73,8 +79,8 @@ var data1=JSON.stringify(data)
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     chequesNumber: currentValue.chequesNumber,
-    chequesIssueDate: currentValue.chequesIssueDate.substring(0,10),
-    chequesRealiseDate: currentValue.chequesRealiseDate.substring(0,10),
+    chequesIssueDate: dateFormater(currentValue.chequesIssueDate),
+    chequesRealiseDate: dateFormater(currentValue.chequesRealiseDate),
     companyName: currentValue.companyName,
     chequesBank: currentValue.chequesBank,
     chequesAmount: currentValue.chequesAmount.toFixed(2),  
@@ -87,7 +93,7 @@ var data1=JSON.stringify(data)
 //heads and body for a single company
 function headRowsCmp() {
   return [
-    {chequesNumber :'Cheque No/Decs',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',chequesBank : 'Bank',chequesAmount : 'Amount'},
+    {chequesNumber :'Cheque No/Desc',chequesIssueDate :'Issue Date',chequesRealiseDate : 'Realise Date',chequesBank : 'Bank',chequesAmount : 'Amount'},
   ]
 }
 
@@ -98,8 +104,8 @@ var data1=JSON.stringify(data)
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     chequesNumber: currentValue.chequesNumber,
-    chequesIssueDate: currentValue.chequesIssueDate.substring(0,10),
-    chequesRealiseDate: currentValue.chequesRealiseDate.substring(0,10),
+    chequesIssueDate: dateFormater(currentValue.chequesIssueDate),
+    chequesRealiseDate: dateFormater(currentValue.chequesRealiseDate),
     chequesBank: currentValue.chequesBank,
     chequesAmount: currentValue.chequesAmount.toFixed(2),  
   });

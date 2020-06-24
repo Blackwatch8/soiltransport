@@ -152,14 +152,14 @@ reportRouter.post('/getdeliverynote',(req,res) => {
 })
 //get petty cash book
 reportRouter.post('/getpettycashbookRp',(req,res) => {
-    const {pettyCash,date}=req.body;
-    pdf.create(pdfTemplate.DeliNote.getPettyCashBook(pettyCash,date),options).toFile('output.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
+    try{
+    const {pettyCash,date,total}=req.body;
+    pdfTemplate.DeliNote.getPettyCashBook(pettyCash,date,total)
+    res.send(Promise.resolve());
+    
+    }catch(e){
+    res.send(Promise.reject());
+    }
 })
 //get invoice
 reportRouter.post('/getinvoiceRp',(req,res) => {

@@ -61,101 +61,51 @@ getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
 	  })
 	  
 }
-getPettyCashBook=(pettyCash,date)=>{
-	var petty =JSON.stringify(pettyCash)
-	var total=0;
-	for(var i=0; i<pettyCash.length; i++){
-		total += pettyCash[i].paymentsAmount;
-	}
-    return `
-    <!DOCTYPE html>
-<html>
-<head>
-    
-    <style>
-        th, td, p, input {
-            font:9px Times-new-roman;
-        }
+getPettyCashBook=(pettyCash,date,total)=>{
+    var doc = new jsPDF();
 
-        .topic2{
-                padding : 0px 130px;
-            }
+    doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,10);
+    doc.text(`Petty Cash Book`, 80,18);
+    doc.setFontSize(12);
+    doc.text(`Date : ${date}`,20,25);
+    doc.autoTable({
+    startY: 26,
+    theme : 'grid',
+    headStyles: { fillColor: [128,128,128] }, 
+    columnStyles: { paymentsAmount: { halign: 'right' } }, 
+    head: headRowsPetty(),
+    body: bodyRowsPetty(pettyCash.length,pettyCash),
+    })
+    doc.text(`Total Amount (Rs):${total.toFixed(2)}`,20,doc.previousAutoTable.finalY + 10);
 
-        .from{
-            padding:0px 10px 0px
-            }
-        table, th, td 
-        {
-            table-layout: auto;
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-			text-align: center;
-			min-width : 90px;
-            
-        }
-        th {
-            font-weight:bold;
-            width : 50px;
-        }
-    </style>
-</head>
-<body>
-<h6 class="topic2">PettyCash Book</h6>
-<p class="from">Date : ${date}</p>
-<p id="showData" class="table" ></p>
-<p class="from">Total Payments : ${total}</p>
+   fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+  })
 
-
-
-<script>
-
-    function CreateTableFromJSON() {
-        var payments = ${petty}
-
-        // EXTRACT VALUE FOR HTML HEADER. 
-        
-        var col = ['Lorry','Pay Type', 'Description', 'Amount (Rs)',];
-        var col2=['vehicle_vehicleNumber','paymentTypeType','paymentsDescription','paymentsAmount'];
-
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-		
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < payments.length; i++) {
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col2.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = payments[i][col2[j]];
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
-CreateTableFromJSON();
-
-</script>
-</body>
-
-
-</html>
-    `
 }
+
+//heads for Diesel report
+function headRowsPetty() {
+    return [
+      {vehicle_vehicleNumber : 'Lorry',paymentTypeType :'Payment Type',paymentsDescription:'Description',paymentsAmount : 'Amount'},
+    ]
+  }
+//Body for pettycash book
+function bodyRowsPetty(rowCount,data) {
+    rowCount = rowCount || 10
+      let body = data.reduce((accumulator, currentValue) => {
+    accumulator.push({
+        vehicle_vehicleNumber :currentValue.vehicle_vehicleNumber,
+        paymentTypeType : currentValue.paymentTypeType,
+        paymentsDescription : currentValue.paymentsDescription,
+        paymentsAmount : currentValue.paymentsAmount.toFixed(2),
+  
+    });
+    return accumulator;
+  },[]);
+    return body
+  }
 delete global.window;
 delete global.navigator;
 delete global.btoa;

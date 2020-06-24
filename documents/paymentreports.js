@@ -7,6 +7,13 @@ const fs = require('fs')
 const jsPDF = require('jspdf');
 const autoTable=require ('jspdf-autotable');
 
+  //formate date 
+  dateFormater=(cell)=>{
+    var stDate = new Date(cell);
+    var date = stDate.getFullYear() + '-' + (stDate.getMonth() + 1) + '-' + stDate.getDate();
+     return `${date}`
+   }
+
 getPaymentReport=(Payments,startDate,endDate,payTotal)=>{
     var doc = new jsPDF();
 
@@ -263,7 +270,7 @@ function bodyRowsPayment(rowCount,data) {
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     paymentsId : currentValue.paymentsId,
-    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    paymentsDate :dateFormater(currentValue.paymentsDate),
     vehicle_vehicleNumber : currentValue.vehicle_vehicleNumber,
     paymentsAmount : currentValue.paymentsAmount.toFixed(2),
     paymentTypeType : currentValue.paymentTypeType,
@@ -281,7 +288,7 @@ function bodyRowsLorryPayment(rowCount,data) {
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     paymentsId : currentValue.paymentsId,
-    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    paymentsDate :dateFormater(currentValue.paymentsDate),
     paymentsAmount : currentValue.paymentsAmount.toFixed(2),
     paymentTypeType : currentValue.paymentTypeType,
     paymentsDescription : currentValue.paymentsDescription,
@@ -297,7 +304,7 @@ function bodyRowsFilteredPayment(rowCount,data) {
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     paymentsId : currentValue.paymentsId,
-    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    paymentsDate :dateFormater(currentValue.paymentsDate),
     paymentsAmount : currentValue.paymentsAmount.toFixed(2),
     paymentsDescription : currentValue.paymentsDescription,
   });
@@ -311,7 +318,7 @@ function bodyRowsDiesel(rowCount,data) {
   rowCount = rowCount || 10
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
-    paymentsDate :currentValue.paymentsDate.substring(0,10),
+    paymentsDate :dateFormater(currentValue.paymentsDate),
     dieselFeeLiters :currentValue.dieselFeeLiters,
     paymentsAmount : currentValue.paymentsAmount.toFixed(2),
 

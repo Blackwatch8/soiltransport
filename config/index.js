@@ -6,13 +6,13 @@ module.exports= ({
         password        : '71160976',
         database        : 'heroku_c09fd48e58d7734'
     }
-    /*
-    mysql:{
+    
+    /*mysql:{
         connectionLimit : 10,
         host            : 'localhost',
         user            : 'root',
         password        : '',
         database        : 'SoilTransportSystem'
-    }
-    */
+    }*/
+    
 })

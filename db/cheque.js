@@ -1,11 +1,11 @@
 
 Connection = require('./connect')
 
-addChequeDetails=async(chequeNo,realiseDate,issueDate,amount,company,bank)=>{
+addChequeDetails=async(chequeNo,realiseDate,issueDate,amount,company,bank,date)=>{
     return new Promise((resolve , reject) =>{
         Connection.query(`INSERT INTO cheques(chequesNumber, chequesRealiseDate,
-             chequesIssueDate,chequesBank, chequesAmount,cheque_companyId) VALUES (
-                 '${chequeNo}','${realiseDate}','${issueDate}','${bank}','${amount}','${company}')`,(err,results)=>{
+             chequesIssueDate,chequesBank, chequesAmount,cheque_companyId,chequesCreated) VALUES (
+                 '${chequeNo}','${realiseDate}','${issueDate}','${bank}','${amount}','${company}','${date}')`,(err,results)=>{
                      if(err){
                          reject(err);
                      }
@@ -18,7 +18,7 @@ addChequeDetails=async(chequeNo,realiseDate,issueDate,amount,company,bank)=>{
 
 getChequeDetails=async (startDate,endDate)=>{
     return new Promise((resolve,reject)=>{
-        Connection.query(`SELECT chequesNumber, chequesRealiseDate, chequesIssueDate,chequesBank, chequesAmount, company.companyName,company.companyId
+        Connection.query(`SELECT chequesId,chequesNumber, chequesRealiseDate, chequesIssueDate,chequesBank, chequesAmount, company.companyName,company.companyId
          FROM cheques,company WHERE cheque_companyId=company.companyId AND chequesCreated BETWEEN 
          '${startDate}' AND '${endDate}'`,(err,results)=>{
             if(err){
@@ -46,7 +46,7 @@ getChequeDetailsOfCompany=async (startDate,endDate,company)=>{
 }
 deleteCheque=async(chequeNo)=>{
     return new Promise((resolve,reject)=>{
-        Connection.query(`DELETE FROM cheques WHERE chequesNumber='${chequeNo}'`,(err,results)=>{
+        Connection.query(`DELETE FROM cheques WHERE chequesId='${chequeNo}'`,(err,results)=>{
             if(err){
                 reject(err);
             }

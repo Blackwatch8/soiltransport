@@ -7,6 +7,12 @@ const fs = require('fs')
 const jsPDF = require('jspdf');
 const autoTable=require ('jspdf-autotable');
 
+  //formate date 
+  dateFormater=(cell)=>{
+    var stDate = new Date(cell);
+    var date = stDate.getFullYear() + '-' + (stDate.getMonth() + 1) + '-' + stDate.getDate();
+     return `${date}`
+   }
 
 //Daily Delivery Report
 getDailyDeliveryRp=(Deliveries,startDate,endDate)=>{
@@ -70,7 +76,7 @@ function bodyRows(rowCount,data) {
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     deliveryNoteNO: currentValue.deliveryNoteNO,
-    deliveryDate: currentValue.deliveryDate.substring(0,10),
+    deliveryDate:dateFormater(currentValue.deliveryDate) ,
     vehicle_vehicleNumber: currentValue.vehicle_vehicleNumber,
     uploadingPlaceAddress: currentValue.uploadingPlaceAddress,
     companyName : currentValue.companyName,
@@ -94,7 +100,7 @@ function bodyRowsLorry(rowCount,data) {
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     deliveryNoteNO: currentValue.deliveryNoteNO,
-    deliveryDate: currentValue.deliveryDate.substring(0,10),
+    deliveryDate: dateFormater(currentValue.deliveryDate),
     uploadingPlaceAddress: currentValue.uploadingPlaceAddress,
     driverName : currentValue.driverName,
     deliveryDistace : currentValue.deliveryDistance,

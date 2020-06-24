@@ -506,7 +506,7 @@ router.post('/deletedelivery', async (req,res)=>{
 //Routes for get dtabase backup begins here
 router.get('/getDb', async (req,res) => {
   try{
-    DB.DbBack.zipDir();
+    //DB.DbBack.zipDir();
     res.sendFile(`${__dirname}/dbBackups/dbbackup.zip`)
   }catch(e){
     console.log(e);
@@ -674,8 +674,8 @@ router.post('/getDieselDetails', async (req,res)=>{
 //route for add cheque details
 router.post('/addcheque', async (req,res)=>{
   try{
-    const {chequeNo,realiseDate,issueDate,amount,company,bank}=req.body;
-    await DB.Cheques.addChequeDetails(chequeNo,realiseDate,issueDate,amount,company,bank);
+    const {chequeNo,realiseDate,issueDate,amount,company,bank,date}=req.body;
+    await DB.Cheques.addChequeDetails(chequeNo,realiseDate,issueDate,amount,company,bank,date);
     let token={
       status:'Successfull'
     }

@@ -7,6 +7,13 @@ const fs = require('fs')
 const jsPDF = require('jspdf');
 const autoTable=require ('jspdf-autotable');
 
+  //formate date 
+  dateFormater=(cell)=>{
+    var stDate = new Date(cell);
+    var date = stDate.getFullYear() + '-' + (stDate.getMonth() + 1) + '-' + stDate.getDate();
+     return `${date}`
+   }
+
 getInvoice=(invoice,company,range,deliTotal)=>{
 
     var doc = new jsPDF();
@@ -25,7 +32,7 @@ getInvoice=(invoice,company,range,deliTotal)=>{
     body: bodyRows(invoice.length,invoice),
     })
     doc.setFontSize(9);
-    doc.text(`Total Amount (Rs):${deliTotal.toFixed(2)}`,160,doc.previousAutoTable.finalY + 10);
+    doc.text(`Total Amount (Rs):${deliTotal.toFixed(2)}`,150,doc.previousAutoTable.finalY + 10);
 
 fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
   if (err) throw err;
@@ -45,7 +52,7 @@ function bodyRows(rowCount,data) {
     let body = data.reduce((accumulator, currentValue) => {
   accumulator.push({
     deliveryNoteNO : currentValue.deliveryNoteNO,
-    deliveryDate :currentValue.deliveryDate.substring(0,10),
+    deliveryDate :dateFormater(currentValue.deliveryDate),
     vehicle_vehicleNumber : currentValue.vehicle_vehicleNumber,
     uploadingPlaceAddress : currentValue.uploadingPlaceAddress,
     vehicleCapacity : currentValue.vehicleCapacity,

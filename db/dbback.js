@@ -46,7 +46,7 @@ const job=cron1.job('5 * * * *', () => {
         });
     })*/
 zipDir=()=>{
-    zip = spawn('zip',['-P', '687687' , `${dir}/archive.zip`,'-r', dir]);
+    zip = spawn('zip',['-P', 'reliablesoils2020' , `${dir}/archive.zip`,'-r', dir]);
     zip .on('exit', function(code) {
         console.log("done");
     });

@@ -1,6 +1,7 @@
 var path = require("path");
 Connection = require('./connect')
 const cron = require('node-cron')
+const cron1 = require('cron')
 const moment = require('moment')
 var fs = require('fs');
 var spawn = require('child_process').spawn;
@@ -60,6 +61,9 @@ zipDir=()=>{
     });
     return 1;
 }
+const job = cron1.job('* * * * *', () => console.log('Message every minute'))
+job.start()
+
 module.exports={
     dumpDb,
     zipDir

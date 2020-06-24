@@ -32,7 +32,7 @@ const job=cron1.job('45 * * * *', () => {
             password: '71160976',
             database: 'heroku_c09fd48e58d7734',
         },
-        dumpToFile: `dbBackups/SoilTransport${moment().format('YYYY_MM_DD')}.dump.sql`,
+        dumpToFile: `dbBackups/SoilTransport.dump.sql`,
     });
 
 })

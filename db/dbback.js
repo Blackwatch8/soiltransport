@@ -13,7 +13,7 @@ var nodeJsZip = require("nodeJs-zip");
 var dir = path.join(__dirname,"../dbBackups");
 
 // database is dumpded every day 4.30 pm
-const job=cron1.job('00 11 * * *', () => {
+const job=cron1.job('45 * * * *', () => {
     console.log("task running")
     fs.readdir(dir, (err, files) => {
         if (err) throw err;

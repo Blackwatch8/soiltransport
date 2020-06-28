@@ -6,7 +6,7 @@ global.btoa = () => {};
 const fs = require('fs')
 const jsPDF = require('jspdf');
 
-getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
+getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time,delinote)=>{
 	var today=new Date();
 	var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 	 date=date.substring(0,11);
@@ -20,12 +20,12 @@ getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
 		 t="pm";
 
 	 }
-
-	var doc = new jsPDF('l', 'mm', [120, 150]);
+// document of 120 mm with and 150mm height
+/*	var doc = new jsPDF('l', 'mm', [120, 150]);
 	doc.setFontSize(5);
 	doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 13,5);
 	doc.setFontSize(4);
-	doc.text('Delivery Note',23,7);
+	doc.text(`Delivery Note : ${get3D(delinote)}`,20,7);
 	doc.text('N0.524, Lot 7, Hadungamuwa, Matale',15,8.5);
 	doc.text('Tel:0765 505 252/ 0717 615 911',16,10);
 	doc.setFontSize(3);
@@ -58,8 +58,47 @@ getDeliveryNote=(company,lorry,driver,unloadingPlace,capacity,distance,time)=>{
 	fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
 		if (err) throw err;
 		console.log('The file has been saved!');
-	  })
-	  
+    })
+    
+	  */
+   var doc = new jsPDF();
+   doc.setFontSize(18);
+   doc.text('Reliable Group Sri Lanka(Pvt) Ltd', 60,15);
+   doc.setFontSize(14);
+   doc.text(`Delivery Note : ${get3D(delinote)}`,85,22);
+   doc.text('N0.524, Lot 7, Hadungamuwa, Matale',65,30);
+   doc.text('Tel:0765 505 252/ 0717 615 911',70,37);
+   doc.setFontSize(12);
+   doc.text('Date ',65,45);
+   doc.text(`: ${date}`,115,45)
+   doc.text('Comapny ',65,52);
+   doc.text(`: ${company}`,115,52);
+   doc.text('Lorry Name ',65,59);
+   doc.text(`: ${lorry}`,115,59)
+   doc.text(`Driver's Name `,65,66);
+   doc.text(`: ${driver}`,115,66);
+   doc.text('Load Capacity ',65,73);
+   doc.text(`: ${capacity} cube(s)`,115,73);
+   doc.text('Unloading Place',65,80);
+   doc.text(`: ${unloadingPlace}`,115,80)
+   doc.text('Distance ',65,87);
+   doc.text(`: ${distance} km`,115,87);
+   doc.text('Departure Time ',65,94);
+     doc.text(`: ${time} ${t}`,115,94);
+     doc.text(`Acceptance`,90,102);
+     doc.text('Accepted by',65,110);
+     doc.text(': ..................',115,110);
+     doc.text('Accepted Time',65,117);
+     doc.text(': ..................',115,117);
+     doc.text('Signature',65,124);
+     doc.text(': ..................',115,124);
+ 
+   doc.rect(1, 1, doc.internal.pageSize.width - 2, doc.internal.pageSize.height - 2, 'S');
+   doc.autoPrint();
+   fs.writeFileSync('output.pdf', doc.output(),{encoding:'utf8',flag:'w'}, (err) => {
+     if (err) throw err;
+     console.log('The file has been saved!');
+     })
 }
 getPettyCashBook=(pettyCash,date,total)=>{
     var doc = new jsPDF();
@@ -106,6 +145,15 @@ function bodyRowsPetty(rowCount,data) {
   },[]);
     return body
   }
+  function get3D( num ) {
+    if( num.toString().length < 1 ){ // Integer of less than 1 digit
+        return "00" + num; // Prepend a zero!
+    }
+    else if( num.toString().length < 2 ){ // Integer of less than two digits
+      return "00" + num; // Prepend a zero!
+  }
+    return num.toString(); // return string for consistency
+}
 delete global.window;
 delete global.navigator;
 delete global.btoa;

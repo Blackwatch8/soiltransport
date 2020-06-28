@@ -67,7 +67,6 @@ router.post('/adduser',(req,res) => {
   try{
   const {first_name,last_name,email} = req.body;
     var password=req.body.password;
-    console.log(password);
     bcrypt.hash(req.body.password, 10, async (err, hash) => {
         password = hash
         let user = await DB.Users.addUser(first_name,last_name,email,password);

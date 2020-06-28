@@ -142,8 +142,8 @@ reportRouter.post('/getdieselreport',(req,res) => {
 reportRouter.post('/getdeliverynote',(req,res) => {
 
     try{
-    const {company,lorry,driver,unloadingPlace,capacity,distance,time}=req.body;
-    pdfTemplate.DeliNote.getDeliveryNote(company,lorry,driver,unloadingPlace,capacity,distance,time)
+    const {company,lorry,driver,unloadingPlace,capacity,distance,time,delinote}=req.body;
+    pdfTemplate.DeliNote.getDeliveryNote(company,lorry,driver,unloadingPlace,capacity,distance,time,delinote)
     res.send(Promise.resolve());
         }
     catch(e){

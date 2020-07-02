@@ -2,11 +2,11 @@ const mysql= require('mysql');
 const Sequelize=require("sequelize")
 
 var dbConfig = {
-    connectionLimit : 10,
-    host            : 'us-cdbr-east-05.cleardb.net',
-    user            : 'bb845d734a4f04',
-    password        : '71160976',
-    database        : 'heroku_c09fd48e58d7734'
+  connectionLimit : 10,
+  host            : 'us-cdbr-east-05.cleardb.net',
+  user            : 'bd34339b6e64dd',
+  password        : 'fe97918e',
+  database        : 'heroku_1741df78b945ba2'
   };
   
  /*var dbConfig = {

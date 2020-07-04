@@ -27,10 +27,10 @@ const job=cron1.job('5 * * * *', () => {
       console.log("backing up");
       mysqldump({
         connection: {
-            host: 'us-cdbr-east-05.cleardb.net',
-            user: 'bb845d734a4f04',
-            password: '71160976',
-            database: 'heroku_c09fd48e58d7734',
+            host            : 'us-cdbr-east-05.cleardb.net',
+            user            : 'bd34339b6e64dd',
+            password        : 'fe97918e',
+            database        : 'heroku_1741df78b945ba2'
         },
         dumpToFile: `dbBackups/SoilTransport.dump.sql`,
     });

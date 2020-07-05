@@ -89,7 +89,7 @@ getDailyDeliveryByLorry= async (vehicleNo) => {
 getDeliveriesInRange=(startDate,endDate,companyId)=>{
     return new Promise((resolve,reject) => {
         Connection.query(`SELECT delivery.deliveryNoteNO,delivery.deliveryDate,delivery.vehicle_vehicleNumber,delivery.deliveryPayment,
-        unloadingPlace.uploadingPlaceAddress,vehicle.vehicleCapacity,unloadingPlace.unloadingPlaceIncomeRate 
+        unloadingPlace.uploadingPlaceAddress,vehicle.vehicleCapacity,unloadingPlace.unloadingPlaceIncomeRate ,vehicle.vehicleCapacity * unloadingPlace.unloadingPlaceIncomeRate as totalrate
         FROM delivery,unloadingPlace,vehicle WHERE 
         delivery.uploadingPlace_uploadingPlaceId=unloadingPlace.uploadingPlaceId AND 
         delivery.vehicle_vehicleNumber=vehicle.vehicleNumber AND delivery.deliveryAcceptance='Accepted' AND

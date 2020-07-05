@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   PRIMARY KEY (`companyId`, `companyRegNo`),
   UNIQUE KEY `companyRegNo_UNIQUE` (`companyRegNo`),
   UNIQUE KEY `companyName_UNIQUE` (`companyName`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 81 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: companypayments
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `companypayments` (
   PRIMARY KEY (`companyPaymentsId`),
   KEY `fk_CompanyPayments_company1_idx` (`company_companyId`),
   CONSTRAINT `CompanyPayments_ibfk_1` FOREIGN KEY (`company_companyId`) REFERENCES `company` (`companyId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: delivery
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `delivery` (
   CONSTRAINT `fk_delivery_driver1` FOREIGN KEY (`driver_driverLicenseNo`) REFERENCES `driver` (`driverLicenseNo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_delivery_uploadingPlace1` FOREIGN KEY (`uploadingPlace_uploadingPlaceId`) REFERENCES `unloadingplace` (`uploadingPlaceId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_delivery_vehicle1` FOREIGN KEY (`vehicle_vehicleNumber`) REFERENCES `vehicle` (`vehicleNumber`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 278 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: dieselfee
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `unloadingplace` (
   PRIMARY KEY (`uploadingPlaceId`),
   KEY `fk_unloadingPlace_company1_idx` (`company_companyId`),
   CONSTRAINT `fk_unloadingPlace_company1` FOREIGN KEY (`company_companyId`) REFERENCES `company` (`companyId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 251 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: user
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` varchar(45) NOT NULL DEFAULT 'Member',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`userID`)
-) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = latin1;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 DEFAULT CHARSET = latin1;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: vehicle
@@ -215,16 +215,394 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
 # DATA DUMP FOR TABLE: company
 # ------------------------------------------------------------
 
+INSERT INTO
+  `company` (
+    `companyId`,
+    `companyName`,
+    `companyAddress`,
+    `companyRegNo`,
+    `companyEmail`,
+    `companyContact`,
+    `companyRegDate`,
+    `companyCreated`
+  )
+VALUES
+  (
+    1,
+    'Subasingha',
+    'Subassinghe Contractors (PVT) Ltd. No 294 A, Hapugalla Wakwella Gall',
+    '001',
+    'Subassinghe@gmail.com',
+    '0771234567',
+    '2020-7-5',
+    '2020-07-05 10:17:18'
+  );
+INSERT INTO
+  `company` (
+    `companyId`,
+    `companyName`,
+    `companyAddress`,
+    `companyRegNo`,
+    `companyEmail`,
+    `companyContact`,
+    `companyRegDate`,
+    `companyCreated`
+  )
+VALUES
+  (
+    21,
+    'C. M. K. Contractors',
+    'C. M. K. Construction NO; 232/2, Dampitiya Estate, Thorayaya.',
+    '002',
+    'cmk@gmail.com',
+    '0777123578',
+    '2020-7-5',
+    '2020-07-05 10:21:03'
+  );
+INSERT INTO
+  `company` (
+    `companyId`,
+    `companyName`,
+    `companyAddress`,
+    `companyRegNo`,
+    `companyEmail`,
+    `companyContact`,
+    `companyRegDate`,
+    `companyCreated`
+  )
+VALUES
+  (
+    31,
+    'Edward & Cristine',
+    'Edward and Christie (pvt) Ltd, Water Project, Matale.',
+    '003',
+    'edward&cristine@gmail.com',
+    '077238207',
+    '2020-7-5',
+    '2020-07-05 10:25:57'
+  );
+INSERT INTO
+  `company` (
+    `companyId`,
+    `companyName`,
+    `companyAddress`,
+    `companyRegNo`,
+    `companyEmail`,
+    `companyContact`,
+    `companyRegDate`,
+    `companyCreated`
+  )
+VALUES
+  (
+    41,
+    'HARSHANI CONSTRUCTION',
+    'HARSHANI CONSTRUCTION, 70, Napana Gunnepana, Kandy, Sri Lanka.',
+    '004',
+    'harshani@gmail.com',
+    '0762067081',
+    '2020-7-5',
+    '2020-07-05 10:30:55'
+  );
+INSERT INTO
+  `company` (
+    `companyId`,
+    `companyName`,
+    `companyAddress`,
+    `companyRegNo`,
+    `companyEmail`,
+    `companyContact`,
+    `companyRegDate`,
+    `companyCreated`
+  )
+VALUES
+  (
+    51,
+    'Bright Vision (PVT) Ltd',
+    'Bright Vision (PVT) Ltd. Raththota Water Projet, Raththota,',
+    '005',
+    'brightvision@gmail.com',
+    '0772382047',
+    '2020-7-5',
+    '2020-07-05 10:33:42'
+  );
+INSERT INTO
+  `company` (
+    `companyId`,
+    `companyName`,
+    `companyAddress`,
+    `companyRegNo`,
+    `companyEmail`,
+    `companyContact`,
+    `companyRegDate`,
+    `companyCreated`
+  )
+VALUES
+  (
+    71,
+    'V.V Karunarathna Company',
+    'V.V Karunarathna Company, Rattota Water Project Rattota',
+    '006',
+    'vvkarunarathna@gmail.com',
+    '0777712356',
+    '2020-7-5',
+    '2020-07-05 10:35:50'
+  );
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: companypayments
 # ------------------------------------------------------------
 
+INSERT INTO
+  `companypayments` (
+    `companyPaymentsId`,
+    `companyPaymentsCredit`,
+    `companyPaymentsDebit`,
+    `company_companyId`
+  )
+VALUES
+  (1, 0.00, 0.00, 1);
+INSERT INTO
+  `companypayments` (
+    `companyPaymentsId`,
+    `companyPaymentsCredit`,
+    `companyPaymentsDebit`,
+    `company_companyId`
+  )
+VALUES
+  (11, 0.00, 0.00, 21);
+INSERT INTO
+  `companypayments` (
+    `companyPaymentsId`,
+    `companyPaymentsCredit`,
+    `companyPaymentsDebit`,
+    `company_companyId`
+  )
+VALUES
+  (21, 0.00, 0.00, 31);
+INSERT INTO
+  `companypayments` (
+    `companyPaymentsId`,
+    `companyPaymentsCredit`,
+    `companyPaymentsDebit`,
+    `company_companyId`
+  )
+VALUES
+  (31, 0.00, 0.00, 41);
+INSERT INTO
+  `companypayments` (
+    `companyPaymentsId`,
+    `companyPaymentsCredit`,
+    `companyPaymentsDebit`,
+    `company_companyId`
+  )
+VALUES
+  (41, 0.00, 0.00, 51);
+INSERT INTO
+  `companypayments` (
+    `companyPaymentsId`,
+    `companyPaymentsCredit`,
+    `companyPaymentsDebit`,
+    `company_companyId`
+  )
+VALUES
+  (51, 0.00, 0.00, 71);
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: delivery
 # ------------------------------------------------------------
 
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    115,
+    1,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    1000,
+    '17.56',
+    'LJ 4653',
+    191,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    227,
+    13,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    1755,
+    '17.44',
+    'LJ 0121',
+    1,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    271,
+    1,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    1000,
+    '17.56',
+    'LH 7253',
+    191,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    273,
+    1,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    1000,
+    '17.56',
+    'LJ 4653',
+    191,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    274,
+    13,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    0,
+    '17.52',
+    'LJ 4653',
+    1,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    275,
+    13,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    1755,
+    '17.52',
+    'LH 7253',
+    1,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    276,
+    13,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    1755,
+    '17.52',
+    'LH 7253',
+    1,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    277,
+    13,
+    'Accepted',
+    '2020-06-01 00:00:00',
+    0,
+    '17.52',
+    'LJ 4653',
+    21,
+    2
+  );
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: dieselfee
@@ -235,6 +613,86 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
 # DATA DUMP FOR TABLE: driver
 # ------------------------------------------------------------
 
+INSERT INTO
+  `driver` (
+    `driverLicenseNo`,
+    `driverName`,
+    `driverContact`,
+    `driverRegDate`,
+    `created`
+  )
+VALUES
+  (
+    1,
+    'Garmini',
+    '0771235789',
+    '2020-07-05',
+    '2020-07-05 10:54:00'
+  );
+INSERT INTO
+  `driver` (
+    `driverLicenseNo`,
+    `driverName`,
+    `driverContact`,
+    `driverRegDate`,
+    `created`
+  )
+VALUES
+  (
+    2,
+    'Damith',
+    '0765793412',
+    '2020-07-05',
+    '2020-07-05 10:55:35'
+  );
+INSERT INTO
+  `driver` (
+    `driverLicenseNo`,
+    `driverName`,
+    `driverContact`,
+    `driverRegDate`,
+    `created`
+  )
+VALUES
+  (
+    3,
+    'Jayasuriya',
+    '0778019796',
+    '2020-07-05',
+    '2020-07-05 10:56:31'
+  );
+INSERT INTO
+  `driver` (
+    `driverLicenseNo`,
+    `driverName`,
+    `driverContact`,
+    `driverRegDate`,
+    `created`
+  )
+VALUES
+  (
+    4,
+    'Ajith',
+    '0773130688',
+    '2020-07-05',
+    '2020-07-05 10:57:12'
+  );
+INSERT INTO
+  `driver` (
+    `driverLicenseNo`,
+    `driverName`,
+    `driverContact`,
+    `driverRegDate`,
+    `created`
+  )
+VALUES
+  (
+    5,
+    'Runga',
+    '0777777777',
+    '2020-07-05',
+    '2020-07-05 10:57:56'
+  );
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: invoice
@@ -265,6 +723,213 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
 # DATA DUMP FOR TABLE: unloadingplace
 # ------------------------------------------------------------
 
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (1, 'Akurambada', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (21, 'Paldeniya', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (31, 'Matale Yard', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (41, 'Madawala', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (61, 'Madawala', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (71, 'Katawala', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (81, 'Delgolla', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (91, 'Nikagolla', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (101, 'Mahawela', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (111, 'Pallepola', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (121, 'Rajgammana', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (131, 'koholanwala', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (141, 'Noth Matale', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (151, 'Mahameunawa', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (161, 'Ambokka', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (171, 'Walmoruwa', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (181, 'Galaliyadda', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (191, 'Koholanwala', 2500, 21);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (201, 'Rattota Town', 3000, 31);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (211, 'Noth Matale', 2500, 41);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (221, 'Babarakirialla', 3000, 51);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (231, 'Weragama', 3000, 51);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (241, 'Rattota Yard', 3000, 71);
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: user
@@ -292,11 +957,113 @@ VALUES
     'Admin',
     '2020-06-28 06:17:27'
   );
+INSERT INTO
+  `user` (
+    `userID`,
+    `first_name`,
+    `last_name`,
+    `email`,
+    `password`,
+    `Status`,
+    `role`,
+    `created`
+  )
+VALUES
+  (
+    11,
+    'test',
+    '',
+    'test@gmail.com',
+    '$2b$10$p5T54nwChVkb4bodLVJzHu1xT59W69k5dcj0e897nlBjJ6gcyvMKO',
+    'Active',
+    'Member',
+    '2020-07-05 01:14:26'
+  );
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: vehicle
 # ------------------------------------------------------------
 
+INSERT INTO
+  `vehicle` (
+    `vehicleNumber`,
+    `vehicleCapacity`,
+    `vehicleDeliRate`,
+    `vehicleRegDate`,
+    `vehicleCreated`
+  )
+VALUES
+  (
+    'LA 7710',
+    '03',
+    0,
+    '2020-07-05',
+    '2020-07-05 10:38:19'
+  );
+INSERT INTO
+  `vehicle` (
+    `vehicleNumber`,
+    `vehicleCapacity`,
+    `vehicleDeliRate`,
+    `vehicleRegDate`,
+    `vehicleCreated`
+  )
+VALUES
+  (
+    'LH 7253',
+    '03',
+    135,
+    '2020-07-05',
+    '2020-07-05 10:39:04'
+  );
+INSERT INTO
+  `vehicle` (
+    `vehicleNumber`,
+    `vehicleCapacity`,
+    `vehicleDeliRate`,
+    `vehicleRegDate`,
+    `vehicleCreated`
+  )
+VALUES
+  (
+    'LI 0430',
+    '03',
+    135,
+    '2020-07-05',
+    '2020-07-05 10:40:02'
+  );
+INSERT INTO
+  `vehicle` (
+    `vehicleNumber`,
+    `vehicleCapacity`,
+    `vehicleDeliRate`,
+    `vehicleRegDate`,
+    `vehicleCreated`
+  )
+VALUES
+  (
+    'LJ 0121',
+    '03',
+    135,
+    '2020-07-05',
+    '2020-07-05 10:39:24'
+  );
+INSERT INTO
+  `vehicle` (
+    `vehicleNumber`,
+    `vehicleCapacity`,
+    `vehicleDeliRate`,
+    `vehicleRegDate`,
+    `vehicleCreated`
+  )
+VALUES
+  (
+    'LJ 4653',
+    '3',
+    0,
+    '2020-07-05',
+    '2020-07-05 12:22:19'
+  );
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

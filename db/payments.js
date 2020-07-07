@@ -1,14 +1,11 @@
 
 Connection = require('./connect');
 
-updatePayment = async(paymentsAmount,paymentTypeId,paymentsDescription,vehicleNo) =>{
+updatePayment = async(paymentsAmount,paymentTypeId,paymentsDescription,vehicleNo,paymentsDate) =>{
     return new Promise((resolve,reject) => {
-        var today = new Date(),
-            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
         Connection.query(`INSERT INTO LorryPayments (paymentsAmount, paymentsDate , paymentsDescription,
             paymentType_paymentTypeId, vehicle_vehicleNumber) VALUES
-          ('${paymentsAmount}','${date}','${paymentsDescription}','${paymentTypeId}','${vehicleNo}')`,(err,results) => {
+          ('${paymentsAmount}','${paymentsDate}','${paymentsDescription}','${paymentTypeId}','${vehicleNo}')`,(err,results) => {
               if(err){
                   reject(err);
               }
@@ -119,11 +116,9 @@ getAllPaymentsByLorry = async (startDate,endDate,vehicleNo) => {
     })
 }
 
-addPettyCash= async (paymentId) =>{
-    var today = new Date(),
-    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+addPettyCash= async (paymentId,pettyDate) =>{
     return new Promise((resolve,reject) =>{
-        Connection.query(`INSERT INTO pettyCashBook(LorryPayments_paymentsId,pettyDate) VALUES ('${paymentId}','${date}')`,(err,results)=>{
+        Connection.query(`INSERT INTO pettyCashBook(LorryPayments_paymentsId,pettyDate) VALUES ('${paymentId}','${pettyDate}')`,(err,results)=>{
             if(err){
                 reject(err);
             }

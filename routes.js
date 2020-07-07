@@ -518,8 +518,8 @@ router.get('/getDb', async (req,res) => {
 
 router.post('/addpayment', async (req,res) => {
     try{
-      const{paymentsAmount,paymentTypeId,vehicleNo,paymentsDescription}=req.body;
-      await DB.Payments.updatePayment(paymentsAmount,paymentTypeId,paymentsDescription,vehicleNo);
+      const{paymentsAmount,paymentTypeId,vehicleNo,paymentsDescription,paymentsDate}=req.body;
+      await DB.Payments.updatePayment(paymentsAmount,paymentTypeId,paymentsDescription,vehicleNo,paymentsDate);
       let token={
         status: 'SuccessfullyAdded'
       }
@@ -594,8 +594,8 @@ router.post('/getallpaymentsbylorry',async (req,res) =>{
 })
 router.post('/addpettycash', async (req,res) =>{
   try{
-    const{paymentsId}=req.body;
-    await DB.Payments.addPettyCash(paymentsId);
+    const{paymentsId,pettyDate}=req.body;
+    await DB.Payments.addPettyCash(paymentsId,pettyDate);
     let token={
       status:'Successfull'
     }

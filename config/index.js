@@ -9,7 +9,7 @@ module.exports= ({
         database        : 'heroku_1741df78b945ba2'
     }
     
-    /*mysql:{
+   /* mysql:{
         connectionLimit : 10,
         host            : 'localhost',
         user            : 'root',

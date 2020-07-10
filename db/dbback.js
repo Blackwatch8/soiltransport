@@ -11,30 +11,29 @@ const mysqldump = require('mysqldump')
 var nodeJsZip = require("nodeJs-zip");
 
 var dir = path.join(__dirname,"../dbBackups");
+Connection = require('./connect');
 
 // database is dumpded every hour
-const job=cron1.job('5 * * * *', () => {
-    console.log("task running")
-    fs.readdir(dir, (err, files) => {
-        if (err) throw err;
-      
-        for (const file of files) {
-          fs.unlink(path.join(dir, file), err => {
-            if (err) throw err;
-          });
-        }
-      });
-      console.log("backing up");
-      mysqldump({
-        connection: {
-            host            : 'us-cdbr-east-05.cleardb.net',
-            user            : 'bd34339b6e64dd',
-            password        : 'fe97918e',
-            database        : 'heroku_1741df78b945ba2'
-        },
-        dumpToFile: `dbBackups/SoilTransport.dump.sql`,
-    });
-
+const job=cron1.job('10 * * * *', () => {
+        Connection.query(`SELECT userId from user LIMIT 1 `,(err,results) => {
+              if(err){
+                  console.log("Database connection error")
+              }
+              else if(results.length>0){
+                console.log("backing up");
+                mysqldump({
+                  connection: {
+                    host            : 'us-cdbr-east-05.cleardb.net',
+                    user            : 'bd34339b6e64dd',
+                    password        : 'fe97918e',
+                    database        : 'heroku_1741df78b945ba2'
+                  },
+                  dumpToFile: `dbBackups/SoilTransport.dump.sql`,
+              },()=>{
+                  zipDir();
+              });
+              }
+          })
 })
     //Zipping database
     /*const job2= cron1.job('28 * * * *', () => {

@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `delivery` (
   CONSTRAINT `fk_delivery_driver1` FOREIGN KEY (`driver_driverLicenseNo`) REFERENCES `driver` (`driverLicenseNo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_delivery_uploadingPlace1` FOREIGN KEY (`uploadingPlace_uploadingPlaceId`) REFERENCES `unloadingplace` (`uploadingPlaceId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_delivery_vehicle1` FOREIGN KEY (`vehicle_vehicleNumber`) REFERENCES `vehicle` (`vehicleNumber`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1961 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 2465 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: dieselfee
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `dieselfee` (
   `dieselFeeLiters` float DEFAULT NULL,
   PRIMARY KEY (`dieselFeeId`),
   CONSTRAINT `dieselFee_ibfk_1` FOREIGN KEY (`dieselFeeId`) REFERENCES `lorrypayments` (`paymentsId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 362 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1092 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: driver
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `lorrypayments` (
   KEY `fk_payments_vehicle1_idx` (`vehicle_vehicleNumber`),
   CONSTRAINT `fk_payments_paymentType1` FOREIGN KEY (`paymentType_paymentTypeId`) REFERENCES `paymenttype` (`paymentTypeId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_payments_vehicle1` FOREIGN KEY (`vehicle_vehicleNumber`) REFERENCES `vehicle` (`vehicleNumber`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 541 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1221 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: paymenttype
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `pettycashbook` (
   PRIMARY KEY (`pettyId`),
   KEY `LorryPayments_paymentsId` (`LorryPayments_paymentsId`),
   CONSTRAINT `pettyCashBook_ibfk_1` FOREIGN KEY (`LorryPayments_paymentsId`) REFERENCES `lorrypayments` (`paymentsId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 371 DEFAULT CHARSET = latin1;
+) ENGINE = InnoDB AUTO_INCREMENT = 901 DEFAULT CHARSET = latin1;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: rate
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `unloadingplace` (
   PRIMARY KEY (`uploadingPlaceId`),
   KEY `fk_unloadingPlace_company1_idx` (`company_companyId`),
   CONSTRAINT `fk_unloadingPlace_company1` FOREIGN KEY (`company_companyId`) REFERENCES `company` (`companyId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 301 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 371 DEFAULT CHARSET = utf8;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: user
@@ -687,6 +687,222 @@ INSERT INTO
   )
 VALUES
   (
+    241,
+    28,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    3780,
+    '9.12',
+    'LI 0430',
+    251,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    242,
+    28,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    3920,
+    '9.12',
+    'LH 7253',
+    251,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    243,
+    28,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    3920,
+    '9.12',
+    'LJ 0121',
+    251,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    245,
+    28,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    3920,
+    '16.36',
+    'LJ 0121',
+    251,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    246,
+    28,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    3780,
+    '16.31',
+    'LI 0430',
+    251,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    247,
+    28,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    3920,
+    '9.3',
+    'LJ 0121',
+    201,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    248,
+    28,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    3920,
+    '9.46',
+    'LH 7253',
+    251,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    249,
+    28,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    3920,
+    '9.46',
+    'LJ 0121',
+    251,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    250,
+    28,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    3780,
+    '9.46',
+    'LI 0430',
+    251,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
     271,
     1,
     'Accepted',
@@ -930,12 +1146,348 @@ VALUES
     424,
     28,
     'Accepted',
-    '2020-07-08 00:00:00',
+    '2020-07-09 00:00:00',
+    3920,
+    '8.26',
+    'LJ 0121',
+    241,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    425,
+    28,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.26',
+    'LA 7710',
+    241,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    426,
+    28,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.35',
+    'LJ 4653',
+    201,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    427,
+    28,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    3920,
+    '16.33',
+    'LH 7253',
+    241,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    428,
+    28,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    3920,
+    '16.33',
+    'LJ 0121',
+    241,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    429,
+    28,
+    'Accepted',
+    '2020-07-11 00:00:00',
     3780,
-    '11.14',
+    '16.33',
     'LI 0430',
     241,
     5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    430,
+    28,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    3780,
+    '9.2',
+    'LI 0430',
+    241,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    431,
+    28,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    3780,
+    '9.2',
+    'LI 0430',
+    241,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    432,
+    28,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    3780,
+    '9.53',
+    'LI 0430',
+    241,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    433,
+    28,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    3920,
+    '9.53',
+    'LJ 0121',
+    241,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    434,
+    28,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    3920,
+    '9.53',
+    'LH 7253',
+    241,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    435,
+    28,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    3780,
+    '9.53',
+    'LI 0430',
+    241,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    436,
+    28,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    3780,
+    '10.30',
+    'LI 0430',
+    241,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    437,
+    28,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    3920,
+    '10.30',
+    'LJ 0121',
+    241,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    440,
+    28,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    3920,
+    '8.35',
+    'LJ 0121',
+    201,
+    4
   );
 INSERT INTO
   `delivery` (
@@ -1200,6 +1752,246 @@ VALUES
     'LH 7253',
     231,
     3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    636,
+    28,
+    'Accepted',
+    '2020-07-08 00:00:00',
+    3780,
+    '8.26',
+    'LI 0430',
+    241,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    637,
+    31,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    4185,
+    '8.36',
+    'LI 0430',
+    221,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    638,
+    31,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    4340,
+    '8.36',
+    'LH 7253',
+    221,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    639,
+    25,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    3375,
+    '8.55',
+    'LI 0430',
+    231,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    640,
+    25,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    3500,
+    '8.55',
+    'LJ 0121',
+    231,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    641,
+    25,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    3375,
+    '10.29',
+    'LI 0430',
+    231,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    642,
+    25,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    3500,
+    '10.29',
+    'LJ 0121',
+    231,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    643,
+    25,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    3375,
+    '10.29',
+    'LI 0430',
+    231,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    644,
+    25,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.10',
+    'LA 7710',
+    231,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    645,
+    25,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.10',
+    'LJ 4653',
+    231,
+    2
   );
 INSERT INTO
   `delivery` (
@@ -1505,7 +2297,7 @@ VALUES
   (
     702,
     5,
-    'Pending..',
+    'Accepted',
     '2020-07-08 00:00:00',
     0,
     '11.9',
@@ -1529,7 +2321,7 @@ VALUES
   (
     703,
     5,
-    'Pending..',
+    'Accepted',
     '2020-07-08 00:00:00',
     0,
     '11.9',
@@ -1679,6 +2471,1734 @@ VALUES
     '11.2',
     'LH 7253',
     31,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    710,
+    22,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    3080,
+    '7.54',
+    'LH 7253',
+    101,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    711,
+    18,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    2520,
+    '8.16',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    712,
+    5,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    1000,
+    '8.16',
+    'LI 0430',
+    121,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    713,
+    5,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.16',
+    'LA 7710',
+    121,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    714,
+    5,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.16',
+    'LJ 4653',
+    121,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    715,
+    18,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    2520,
+    '8.16',
+    'LH 7253',
+    31,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    716,
+    18,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    2430,
+    '8.16',
+    'LI 0430',
+    31,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    717,
+    18,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.16',
+    'LJ 4653',
+    31,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    718,
+    18,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.16',
+    'LA 7710',
+    31,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    719,
+    18,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    0,
+    '8.42',
+    'LJ 4653',
+    31,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    720,
+    18,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    0,
+    '8.42',
+    'LA 7710',
+    31,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    721,
+    5,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    0,
+    '8.42',
+    'LJ 4653',
+    71,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    722,
+    18,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    0,
+    '8.42',
+    'LJ 4653',
+    31,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    723,
+    18,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    2520,
+    '8.42',
+    'LH 7253',
+    31,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    724,
+    18,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    2520,
+    '9.12',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    725,
+    5,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    0,
+    '8.42',
+    'LA 7710',
+    71,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    726,
+    5,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    1000,
+    '8.42',
+    'LH 7253',
+    71,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    727,
+    5,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    1000,
+    '8.42',
+    'LJ 0121',
+    71,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    728,
+    18,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    0,
+    '8.42',
+    'LJ 4653',
+    71,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    729,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    0,
+    '16.23',
+    'LA 7710',
+    71,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    730,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    1000,
+    '16.23',
+    'LH 7253',
+    71,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    731,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    1000,
+    '16.23',
+    'LH 7253',
+    71,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    732,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    1000,
+    '16.23',
+    'LJ 0121',
+    101,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    734,
+    18,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    2520,
+    '16.23',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    735,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    1000,
+    '16.23',
+    'LH 7253',
+    71,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    736,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    1000,
+    '16.23',
+    'LJ 0121',
+    71,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    737,
+    18,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    2430,
+    '16.23',
+    'LI 0430',
+    31,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    738,
+    1,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    0,
+    '16.23',
+    'LA 7710',
+    41,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    739,
+    18,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    2520,
+    '16.23',
+    'LH 7253',
+    31,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    740,
+    18,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    2430,
+    '16.23',
+    'LI 0430',
+    31,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    741,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.45',
+    'LA 7710',
+    101,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    742,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.45',
+    'LJ 4653',
+    71,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    743,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.45',
+    'LJ 4653',
+    71,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    744,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.45',
+    'LA 7710',
+    101,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    745,
+    18,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    2520,
+    '8.45',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    746,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.53',
+    'LJ 4653',
+    301,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    747,
+    18,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    2520,
+    '8.45',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    748,
+    2,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.45',
+    'LA 7710',
+    131,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    749,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.45',
+    'LA 7710',
+    71,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    750,
+    18,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.16',
+    'LJ 4653',
+    31,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    751,
+    18,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.16',
+    'LA 7710',
+    31,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    752,
+    8,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.27',
+    'LA 7710',
+    311,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    753,
+    2,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.16',
+    'LA 7710',
+    131,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    754,
+    3,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.16',
+    'LJ 4653',
+    141,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    755,
+    8,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.27',
+    'LJ 4653',
+    321,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    756,
+    2,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.16',
+    'LA 7710',
+    131,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    757,
+    5,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    1000,
+    '9.16',
+    'LJ 0121',
+    71,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    758,
+    5,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.16',
+    'LA 7710',
+    71,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    759,
+    18,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.16',
+    'LJ 4653',
+    31,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    760,
+    18,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    2520,
+    '9.16',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    761,
+    18,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    2520,
+    '9.16',
+    'LH 7253',
+    31,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    763,
+    5,
+    'Accepted',
+    '2020-07-14 00:00:00',
+    0,
+    '9.25',
+    'LJ 4653',
+    71,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    764,
+    2,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.6',
+    'LJ 4653',
+    131,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    765,
+    6,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.28',
+    'LJ 4653',
+    341,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    766,
+    18,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.14',
+    'LA 7710',
+    31,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    767,
+    7,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.14',
+    'LJ 4653',
+    311,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    768,
+    7,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.14',
+    'LJ 4653',
+    321,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    769,
+    7,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.14',
+    'LA 7710',
+    321,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    770,
+    18,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    2520,
+    '10.14',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    771,
+    5,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.14',
+    'LJ 4653',
+    71,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    772,
+    18,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    2520,
+    '10.14',
+    'LJ 0121',
+    31,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    773,
+    10,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.19',
+    'LJ 4653',
+    331,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    774,
+    7,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.4',
+    'LJ 4653',
+    121,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    775,
+    7,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.4',
+    'LA 7710',
+    121,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    776,
+    5,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    1000,
+    '16.4',
+    'LH 7253',
+    71,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    777,
+    7,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    1000,
+    '16.4',
+    'LH 7253',
+    111,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    778,
+    7,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.9',
+    'LA 7710',
+    351,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    779,
+    7,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.4',
+    'LJ 4653',
+    121,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    780,
+    2,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.4',
+    'LA 7710',
+    131,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    781,
+    18,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    2520,
+    '16.4',
+    'LH 7253',
+    31,
+    3
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    951,
+    28,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    3920,
+    '16.11',
+    'LJ 0121',
+    251,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1903,
+    3,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    1000,
+    '8.34',
+    'LH 7253',
+    211,
     3
   );
 INSERT INTO
@@ -1849,6 +4369,342 @@ VALUES
     291,
     2
   );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1961,
+    5,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    1000,
+    '8.32',
+    'LJ 0121',
+    291,
+    4
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1962,
+    5,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    1000,
+    '8.32',
+    'LI 0430',
+    291,
+    5
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1963,
+    5,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.32',
+    'LJ 4653',
+    291,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1964,
+    5,
+    'Accepted',
+    '2020-07-09 00:00:00',
+    0,
+    '8.32',
+    'LA 7710',
+    291,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1966,
+    5,
+    'Accepted',
+    '2020-07-10 00:00:00',
+    0,
+    '9.14',
+    'LA 7710',
+    291,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1967,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    0,
+    '16.34',
+    'LA 7710',
+    291,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1968,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    0,
+    '16.34',
+    'LA 7710',
+    291,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1969,
+    5,
+    'Accepted',
+    '2020-07-11 00:00:00',
+    0,
+    '16.34',
+    'LA 7710',
+    291,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1970,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.57',
+    'LA 7710',
+    291,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1971,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.57',
+    'LJ 4653',
+    291,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1972,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.57',
+    'LJ 4653',
+    291,
+    2
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    1973,
+    5,
+    'Accepted',
+    '2020-07-13 00:00:00',
+    0,
+    '8.57',
+    'LA 7710',
+    291,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    2463,
+    10,
+    'Accepted',
+    '2020-07-15 00:00:00',
+    0,
+    '10.32',
+    'LA 7710',
+    281,
+    1
+  );
+INSERT INTO
+  `delivery` (
+    `deliveryNoteNO`,
+    `deliveryDistance`,
+    `deliveryAcceptance`,
+    `deliveryDate`,
+    `deliveryPayment`,
+    `deliveryDepartureTime`,
+    `vehicle_vehicleNumber`,
+    `uploadingPlace_uploadingPlaceId`,
+    `driver_driverLicenseNo`
+  )
+VALUES
+  (
+    2464,
+    3,
+    'Pending..',
+    '2020-07-16 00:00:00',
+    0,
+    '16.13',
+    'LJ 4653',
+    361,
+    2
+  );
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: dieselfee
@@ -1902,6 +4758,66 @@ INSERT INTO
   `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
 VALUES
   (361, 147.36);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (611, 19.23);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (621, 19.23);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (631, 19.23);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (641, 115.36);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (651, 115.36);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (661, 115.36);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (671, 115.36);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (741, 200);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (851, 28.84);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (1041, 134.61);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (1051, 134.61);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (1061, 134.61);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (1071, 134.61);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (1081, 134.61);
+INSERT INTO
+  `dieselfee` (`dieselFeeId`, `dieselFeeLiters`)
+VALUES
+  (1091, 200);
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: driver
@@ -2697,6 +5613,1346 @@ VALUES
     1,
     'Chuttan'
   );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    541,
+    10000,
+    'Sallary',
+    '2020-07-08',
+    '2020-07-10 03:14:59',
+    4,
+    'Damith'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    551,
+    14000,
+    'Sallary',
+    '2020-07-08',
+    '2020-07-10 03:15:20',
+    4,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    561,
+    400,
+    'Day Advanced',
+    '2020-07-09',
+    '2020-07-10 03:16:05',
+    1,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    571,
+    400,
+    'Day Advanced',
+    '2020-07-09',
+    '2020-07-10 03:16:17',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    581,
+    400,
+    'Day Advanced',
+    '2020-07-09',
+    '2020-07-10 03:16:50',
+    1,
+    'Damith'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    591,
+    400,
+    'Day Advanced',
+    '2020-07-09',
+    '2020-07-10 03:17:00',
+    1,
+    'Chuttan'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    601,
+    400,
+    'Day Advanced',
+    '2020-07-09',
+    '2020-07-10 03:17:09',
+    1,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    611,
+    2000,
+    'Company Diesel Supply',
+    '2020-07-10',
+    '2020-07-11 03:49:40',
+    5,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    621,
+    2000,
+    'Company Diesel Supply',
+    '2020-07-10',
+    '2020-07-11 03:49:59',
+    5,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    631,
+    2000,
+    'Company Diesel Supply',
+    '2020-07-10',
+    '2020-07-11 03:50:11',
+    5,
+    'LI 0430'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    641,
+    12000,
+    'Subasinghe Diesel Supply',
+    '2020-07-10',
+    '2020-07-11 03:51:13',
+    5,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    651,
+    12000,
+    'Subasinghe Diesel Supply',
+    '2020-07-10',
+    '2020-07-11 03:51:26',
+    5,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    661,
+    12000,
+    'Subasinghe Diesel Supply',
+    '2020-07-10',
+    '2020-07-11 03:51:42',
+    5,
+    'LI 0430'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    671,
+    12000,
+    'Subasinghe Diesel Supply',
+    '2020-07-10',
+    '2020-07-11 03:51:48',
+    5,
+    'LA 7710'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    691,
+    400,
+    'Day Advanced',
+    '2020-07-10',
+    '2020-07-11 03:53:06',
+    1,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    701,
+    400,
+    'Day Advanced',
+    '2020-07-10',
+    '2020-07-11 03:53:21',
+    1,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    711,
+    400,
+    'Day Advanced',
+    '2020-07-10',
+    '2020-07-11 03:53:31',
+    1,
+    'Chuttan'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    721,
+    400,
+    'Side Mirrer',
+    '2020-07-10',
+    '2020-07-11 03:54:18',
+    2,
+    'LA 7710'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    731,
+    3000,
+    'Head Light',
+    '2020-07-10',
+    '2020-07-11 03:54:59',
+    2,
+    'LA 7710'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    741,
+    20800,
+    'Subasinha Fual Suppaly',
+    '2020-07-10',
+    '2020-07-12 11:10:16',
+    5,
+    'Machine'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    751,
+    400,
+    'Day Advanced',
+    '2020-07-11',
+    '2020-07-12 11:11:07',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    761,
+    400,
+    'Day Advanced',
+    '2020-07-11',
+    '2020-07-12 11:11:22',
+    1,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    771,
+    400,
+    'Day Advanced',
+    '2020-07-11',
+    '2020-07-12 11:11:33',
+    1,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    781,
+    400,
+    'Day Advanced',
+    '2020-07-11',
+    '2020-07-12 11:11:43',
+    1,
+    'Chuttan'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    791,
+    400,
+    'Day Advanced',
+    '2020-07-11',
+    '2020-07-12 11:12:00',
+    1,
+    'Kasun'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    801,
+    300,
+    'Head Light',
+    '2020-07-11',
+    '2020-07-12 11:12:38',
+    2,
+    'LA 7710'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    811,
+    500,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 03:39:43',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    821,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 03:44:51',
+    1,
+    'Damith'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    831,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 03:45:02',
+    1,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    841,
+    300,
+    'Phon Card',
+    '2020-07-13',
+    '2020-07-18 03:45:44',
+    4,
+    'Kasun'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    851,
+    3000,
+    'Company Fuel Supply',
+    '2020-07-13',
+    '2020-07-18 04:30:02',
+    5,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    861,
+    200,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:30:57',
+    1,
+    'Damith'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    871,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:31:14',
+    1,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    881,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:31:36',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    891,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:31:36',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    901,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:31:37',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    911,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:31:37',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    921,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:34:15',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    931,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:34:27',
+    1,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    941,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:34:43',
+    1,
+    'Chuttan'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    951,
+    200,
+    'Tire',
+    '2020-07-13',
+    '2020-07-18 04:35:13',
+    2,
+    'LJ 4653'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    961,
+    400,
+    'Day Advanced',
+    '2020-07-13',
+    '2020-07-18 04:35:48',
+    1,
+    'Kasun'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    971,
+    400,
+    'Day Advanced',
+    '2020-07-15',
+    '2020-07-18 09:48:26',
+    1,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    981,
+    400,
+    'Day Advanced',
+    '2020-07-15',
+    '2020-07-18 09:48:45',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    991,
+    400,
+    'Day Advanced',
+    '2020-07-15',
+    '2020-07-18 09:48:55',
+    1,
+    'Damith'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1001,
+    400,
+    'Day Advanced',
+    '2020-07-15',
+    '2020-07-18 09:49:04',
+    1,
+    'Chuttan'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1011,
+    400,
+    'Day Advanced',
+    '2020-07-15',
+    '2020-07-18 09:49:21',
+    1,
+    'Kasun'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1021,
+    850,
+    'Head Light',
+    '2020-07-15',
+    '2020-07-18 09:50:52',
+    2,
+    'LA 7710'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1031,
+    1150,
+    'Fine Sheet',
+    '2020-07-15',
+    '2020-07-18 09:52:42',
+    4,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1041,
+    14000,
+    'Subasingha Fuel Supply',
+    '2020-07-14',
+    '2020-07-18 09:54:16',
+    5,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1051,
+    14000,
+    'Subasingha Fuel Supply',
+    '2020-07-14',
+    '2020-07-18 09:54:33',
+    5,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1061,
+    14000,
+    'Subasingha Fuel Supply',
+    '2020-07-14',
+    '2020-07-18 09:54:47',
+    5,
+    'LA 7710'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1071,
+    14000,
+    'Subasingha Fuel Supply',
+    '2020-07-14',
+    '2020-07-18 09:54:56',
+    5,
+    'LJ 4653'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1081,
+    14000,
+    'Subasingha Fuel Supply',
+    '2020-07-14',
+    '2020-07-18 09:55:10',
+    5,
+    'LI 0430'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1091,
+    20800,
+    'Subasingha Fuel Supply',
+    '2020-07-14',
+    '2020-07-18 09:55:58',
+    5,
+    'Machine'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1101,
+    400,
+    'Day Advanced',
+    '2020-07-16',
+    '2020-07-18 10:45:58',
+    1,
+    'Damith'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1111,
+    400,
+    'Day Advanced',
+    '2020-07-16',
+    '2020-07-18 10:46:09',
+    1,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1121,
+    400,
+    'Day Advanced',
+    '2020-07-16',
+    '2020-07-18 10:46:19',
+    1,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1131,
+    400,
+    'Day Advanced',
+    '2020-07-16',
+    '2020-07-18 10:46:27',
+    1,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1141,
+    400,
+    'Day Advanced',
+    '2020-07-16',
+    '2020-07-18 10:46:38',
+    1,
+    'Chuttan'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1151,
+    400,
+    'Day Advanced',
+    '2020-07-16',
+    '2020-07-18 10:46:48',
+    1,
+    'Kasun'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1161,
+    700,
+    'Salaery Advanced',
+    '2020-07-16',
+    '2020-07-18 10:47:42',
+    4,
+    'Chuttan'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1171,
+    5450,
+    'Lorry Servise',
+    '2020-07-16',
+    '2020-07-18 10:48:17',
+    2,
+    'LH 7253'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1181,
+    3100,
+    'Lorry Servise',
+    '2020-07-16',
+    '2020-07-18 10:48:31',
+    2,
+    'LJ 0121'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1191,
+    3000,
+    'Sallery Advanced',
+    '2020-07-16',
+    '2020-07-18 10:49:10',
+    4,
+    'Garmini'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1201,
+    100,
+    'Phon Card',
+    '2020-07-16',
+    '2020-07-18 10:50:02',
+    4,
+    'ASHEN'
+  );
+INSERT INTO
+  `lorrypayments` (
+    `paymentsId`,
+    `paymentsAmount`,
+    `paymentsDescription`,
+    `paymentsDate`,
+    `created`,
+    `paymentType_paymentTypeId`,
+    `vehicle_vehicleNumber`
+  )
+VALUES
+  (
+    1211,
+    100,
+    'Phon Card',
+    '2020-07-16',
+    '2020-07-18 10:50:10',
+    4,
+    'Kasun'
+  );
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: paymenttype
@@ -2847,6 +7103,218 @@ INSERT INTO
   `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
 VALUES
   (361, 531, '2020-07-08');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (371, 541, '2020-07-08');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (381, 551, '2020-07-08');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (391, 561, '2020-07-09');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (401, 571, '2020-07-09');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (411, 581, '2020-07-09');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (421, 591, '2020-07-09');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (431, 601, '2020-07-09');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (441, 611, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (451, 621, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (461, 631, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (471, 691, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (481, 701, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (491, 711, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (501, 721, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (511, 731, '2020-07-10');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (521, 751, '2020-07-11');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (531, 761, '2020-07-11');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (541, 771, '2020-07-11');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (551, 781, '2020-07-11');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (561, 791, '2020-07-11');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (571, 801, '2020-07-11');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (581, 811, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (591, 821, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (601, 831, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (611, 841, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (621, 851, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (631, 861, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (641, 871, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (651, 911, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (661, 921, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (671, 931, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (681, 941, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (691, 951, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (701, 961, '2020-07-13');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (711, 971, '2020-07-15');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (721, 981, '2020-07-15');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (731, 991, '2020-07-15');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (741, 1001, '2020-07-15');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (751, 1011, '2020-07-15');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (761, 1021, '2020-07-15');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (771, 1031, '2020-07-15');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (781, 1101, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (791, 1111, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (801, 1121, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (811, 1131, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (821, 1141, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (831, 1151, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (841, 1161, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (851, 1171, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (861, 1181, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (871, 1191, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (881, 1201, '2020-07-16');
+INSERT INTO
+  `pettycashbook` (`pettyId`, `LorryPayments_paymentsId`, `pettyDate`)
+VALUES
+  (891, 1211, '2020-07-16');
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: rate
@@ -2893,15 +7361,6 @@ INSERT INTO
   )
 VALUES
   (41, 'Madawala', 2500, 1);
-INSERT INTO
-  `unloadingplace` (
-    `uploadingPlaceId`,
-    `uploadingPlaceAddress`,
-    `unloadingPlaceIncomeRate`,
-    `company_companyId`
-  )
-VALUES
-  (61, 'Madawala', 2500, 1);
 INSERT INTO
   `unloadingplace` (
     `uploadingPlaceId`,
@@ -3109,6 +7568,69 @@ INSERT INTO
   )
 VALUES
   (291, 'Rajgammana', 2500, 91);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (301, 'Polwatta Road', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (311, 'Galewela Road', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (321, 'Thabilideniya', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (331, 'Pallepola', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (341, 'archi rettuwa', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (351, 'Rathalawawa', 2500, 1);
+INSERT INTO
+  `unloadingplace` (
+    `uploadingPlaceId`,
+    `uploadingPlaceAddress`,
+    `unloadingPlaceIncomeRate`,
+    `company_companyId`
+  )
+VALUES
+  (361, 'Madawala School', 1833.33, 81);
 
 # ------------------------------------------------------------
 # DATA DUMP FOR TABLE: user

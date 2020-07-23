@@ -51,10 +51,10 @@ updateDeliTable= async(startDate,endDate) =>{
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     return new Promise((resolve,reject)=>{
         Connection.query(`SELECT delivery.deliveryNoteNO,delivery.deliveryDistance, delivery.deliveryAcceptance,deliveryDate,delivery.vehicle_vehicleNumber, 
-        delivery.deliveryDepartureTime,driver.driverName,unloadingPlace.uploadingPlaceAddress ,company.companyName FROM delivery,driver,unloadingPlace ,company
+        delivery.deliveryDepartureTime,driver.driverName,unloadingplace.uploadingPlaceAddress ,company.companyName FROM delivery,driver,unloadingplace ,company
          WHERE delivery.driver_driverLicenseNo=driver.driverLicenseNo AND 
-         delivery.uploadingPlace_uploadingPlaceId=unloadingPlace.uploadingPlaceId AND 
-         unloadingPlace.company_companyId=company.companyId  
+         delivery.uploadingPlace_uploadingPlaceId=unloadingplace.uploadingPlaceId AND 
+         unloadingplace.company_companyId=company.companyId  
         AND delivery.deliveryDate BETWEEN '${startDate}' AND '${endDate}'  ORDER BY deliveryNoteNO`,(err,results)=>{
             if(err){
                 reject(err);
@@ -72,9 +72,9 @@ getDailyDeliveryByLorry= async (vehicleNo) => {
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     return new Promise((resolve,reject) => {
         Connection.query(`SELECT delivery.deliveryNoteNO,delivery.deliveryPayment,
-        unloadingPlace.uploadingPlaceAddress 
-        FROM delivery,unloadingPlace 
-        WHERE delivery.uploadingPlace_uploadingPlaceId=unloadingPlace.uploadingPlaceId 
+        unloadingplace.uploadingPlaceAddress 
+        FROM delivery,unloadingplace 
+        WHERE delivery.uploadingPlace_uploadingPlaceId=unloadingplace.uploadingPlaceId 
         AND delivery.deliveryDate = '${date}' AND delivery.vehicle_vehicleNumber='${vehicleNo}'
         AND delivery.deliveryAcceptance='Accepted' ORDER BY deliveryNoteNO`,(err,results)=>{
             if(err){
@@ -89,11 +89,11 @@ getDailyDeliveryByLorry= async (vehicleNo) => {
 getDeliveriesInRange=(startDate,endDate,companyId)=>{
     return new Promise((resolve,reject) => {
         Connection.query(`SELECT delivery.deliveryNoteNO,delivery.deliveryDate,delivery.vehicle_vehicleNumber,delivery.deliveryPayment,
-        unloadingPlace.uploadingPlaceAddress,vehicle.vehicleCapacity,unloadingPlace.unloadingPlaceIncomeRate ,vehicle.vehicleCapacity * unloadingPlace.unloadingPlaceIncomeRate as totalrate
-        FROM delivery,unloadingPlace,vehicle WHERE 
-        delivery.uploadingPlace_uploadingPlaceId=unloadingPlace.uploadingPlaceId AND 
+        unloadingplace.uploadingPlaceAddress,vehicle.vehicleCapacity,unloadingplace.unloadingPlaceIncomeRate ,vehicle.vehicleCapacity * unloadingplace.unloadingPlaceIncomeRate as totalrate
+        FROM delivery,unloadingplace,vehicle WHERE 
+        delivery.uploadingPlace_uploadingPlaceId=unloadingplace.uploadingPlaceId AND 
         delivery.vehicle_vehicleNumber=vehicle.vehicleNumber AND delivery.deliveryAcceptance='Accepted' AND
-         unloadingPlace.company_companyId='${companyId}' AND deliveryDate BETWEEN '${startDate}' AND '${endDate}' ORDER BY 
+         unloadingplace.company_companyId='${companyId}' AND deliveryDate BETWEEN '${startDate}' AND '${endDate}' ORDER BY 
          delivery.deliveryNoteNO  ` ,(err,results) =>{
             if(err){
                 reject(err)
@@ -107,9 +107,9 @@ getDeliveriesInRange=(startDate,endDate,companyId)=>{
 getDeliveriesInRangeByLorry=(startDate,endDate,vehicleNo)=>{
     return new Promise((resolve,reject) => {
         Connection.query(`SELECT delivery.deliveryNoteNO,delivery.deliveryDate,delivery.deliveryDistance,delivery.deliveryPayment,
-        unloadingPlace.uploadingPlaceAddress,vehicle.vehicleCapacity , driver.driverName
-        FROM delivery,unloadingPlace,vehicle, driver WHERE delivery.driver_driverLicenseNo=driver.driverLicenseNo AND
-        delivery.uploadingPlace_uploadingPlaceId=unloadingPlace.uploadingPlaceId AND 
+        unloadingplace.uploadingPlaceAddress,vehicle.vehicleCapacity , driver.driverName
+        FROM delivery,unloadingplace,vehicle, driver WHERE delivery.driver_driverLicenseNo=driver.driverLicenseNo AND
+        delivery.uploadingPlace_uploadingPlaceId=unloadingplace.uploadingPlaceId AND 
         delivery.vehicle_vehicleNumber=vehicle.vehicleNumber AND NOT delivery.deliveryAcceptance='Pending..' AND
         delivery.vehicle_vehicleNumber='${vehicleNo}' AND deliveryDate BETWEEN '${startDate}' AND '${endDate}' ORDER BY 
          delivery.deliveryNoteNO  ` ,(err,results) =>{

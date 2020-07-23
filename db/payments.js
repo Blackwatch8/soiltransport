@@ -3,7 +3,7 @@ Connection = require('./connect');
 
 updatePayment = async(paymentsAmount,paymentTypeId,paymentsDescription,vehicleNo,paymentsDate) =>{
     return new Promise((resolve,reject) => {
-        Connection.query(`INSERT INTO LorryPayments (paymentsAmount, paymentsDate , paymentsDescription,
+        Connection.query(`INSERT INTO lorrypayments (paymentsAmount, paymentsDate , paymentsDescription,
             paymentType_paymentTypeId, vehicle_vehicleNumber) VALUES
           ('${paymentsAmount}','${paymentsDate}','${paymentsDescription}','${paymentTypeId}','${vehicleNo}')`,(err,results) => {
               if(err){
@@ -20,7 +20,7 @@ updateDieseFee =async(dieselFeeId,dieselFeeLiters)=>{
     return new Promise((resolve,reject) =>{
         var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            Connection.query(`INSERT INTO dieselFee (dieselFeeId,dieselFeeLiters) VALUES ('${dieselFeeId}','${dieselFeeLiters}')`,(err,results)=>{
+            Connection.query(`INSERT INTO dieselfee (dieselFeeId,dieselFeeLiters) VALUES ('${dieselFeeId}','${dieselFeeLiters}')`,(err,results)=>{
                      if(err){
                          reject(err);
                      }
@@ -33,10 +33,10 @@ updateDieseFee =async(dieselFeeId,dieselFeeLiters)=>{
 getDieselDetailsOfLorry= async(startDate,endDate,vehicleNumber)=>{
     
     return new Promise((resolve,reject) =>{
-            Connection.query(`SELECT dieselFeeId, dieselFeeLiters,LorryPayments.paymentsDate,LorryPayments.paymentsAmount,LorryPayments.paymentsDescription 
-            FROM dieselFee,LorryPayments WHERE LorryPayments.paymentsId=dieselFee.dieselFeeId AND 
-            LorryPayments.vehicle_vehicleNumber='${vehicleNumber}'
-             AND LorryPayments.paymentsDate BETWEEN '${startDate}' AND '${endDate}' group by  dieselFeeId`,(err,results) =>{
+            Connection.query(`SELECT dieselFeeId, dieselFeeLiters,lorrypayments.paymentsDate,lorrypayments.paymentsAmount,lorrypayments.paymentsDescription 
+            FROM dieselfee,lorrypayments WHERE lorrypayments.paymentsId=dieselfee.dieselFeeId AND 
+            lorrypayments.vehicle_vehicleNumber='${vehicleNumber}'
+             AND lorrypayments.paymentsDate BETWEEN '${startDate}' AND '${endDate}' group by  dieselFeeId`,(err,results) =>{
                  if(err){
                      reject(err);
                  }
@@ -51,9 +51,9 @@ getDieselDetailsOfLorry= async(startDate,endDate,vehicleNumber)=>{
 getDailyPayments = async (startDate,endDate) => {
 
     return new Promise((resolve,reject)=>{
-        Connection.query(`SELECT LorryPayments.paymentsId,LorryPayments.paymentsDate,LorryPayments.paymentsDescription,LorryPayments.paymentsAmount,paymentType.paymentTypeType,
-        LorryPayments.vehicle_vehicleNumber FROM LorryPayments,paymentType
-        where LorryPayments.paymentType_paymentTypeId=paymentType.paymentTypeId and paymentsDate BETWEEN '${startDate}' AND '${endDate}' order by created`,(err,result) => {
+        Connection.query(`SELECT lorrypayments.paymentsId,lorrypayments.paymentsDate,lorrypayments.paymentsDescription,lorrypayments.paymentsAmount,paymenttype.paymentTypeType,
+        lorrypayments.vehicle_vehicleNumber FROM lorrypayments,paymenttype
+        where lorrypayments.paymentType_paymentTypeId=paymenttype.paymentTypeId and paymentsDate BETWEEN '${startDate}' AND '${endDate}' order by created`,(err,result) => {
             if(err){
                 return reject(err);
             }
@@ -68,10 +68,10 @@ getDailyPaymentsByLorry = async (vehicleNo) => {
     var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     return new Promise((resolve,reject)=>{
-        Connection.query(`SELECT LorryPayments.paymentsId,LorryPayments.paymentsDate,LorryPayments.paymentsAmount,paymentType.paymentTypeType
-         FROM LorryPayments,paymentType
-        where LorryPayments.paymentType_paymentTypeId=paymentType.paymentTypeId and LorryPayments.paymentsDate='${date}'
-        AND LorryPayments.vehicle_vehicleNumber='${vehicleNo}' AND paymentType_paymentTypeId='3'`,(err,result) => {
+        Connection.query(`SELECT lorrypayments.paymentsId,lorrypayments.paymentsDate,lorrypayments.paymentsAmount,paymenttype.paymentTypeType
+         FROM lorrypayments,paymenttype
+        where lorrypayments.paymentType_paymentTypeId=paymenttype.paymentTypeId and lorrypayments.paymentsDate='${date}'
+        AND lorrypayments.vehicle_vehicleNumber='${vehicleNo}' AND paymentType_paymentTypeId='3'`,(err,result) => {
             if(err){
                 return reject(err);
             }
@@ -84,11 +84,11 @@ getDailyPaymentsByLorry = async (vehicleNo) => {
 getMonthlyPaymentsByLorry = async (startDate,endDate,vehicleNo,paymentType) => {
 
     return new Promise((resolve,reject)=>{
-        Connection.query(`SELECT LorryPayments.paymentsId,LorryPayments.paymentsDate,LorryPayments.paymentsDescription,LorryPayments.paymentsAmount,paymentType.paymentTypeType
-         FROM LorryPayments,paymentType
-        where LorryPayments.paymentType_paymentTypeId=paymentType.paymentTypeId
-        AND LorryPayments.vehicle_vehicleNumber='${vehicleNo}' AND paymentType_paymentTypeId='${paymentType}' AND LorryPayments.paymentsDate
-        BETWEEN '${startDate}' AND '${endDate}' ORDER BY LorryPayments.paymentsId`,(err,result) => {
+        Connection.query(`SELECT lorrypayments.paymentsId,lorrypayments.paymentsDate,lorrypayments.paymentsDescription,lorrypayments.paymentsAmount,paymenttype.paymentTypeType
+         FROM lorrypayments,paymenttype
+        where lorrypayments.paymentType_paymentTypeId=paymenttype.paymentTypeId
+        AND lorrypayments.vehicle_vehicleNumber='${vehicleNo}' AND paymentType_paymentTypeId='${paymentType}' AND lorrypayments.paymentsDate
+        BETWEEN '${startDate}' AND '${endDate}' ORDER BY lorrypayments.paymentsId`,(err,result) => {
             if(err){
                 return reject(err);
             }
@@ -101,11 +101,11 @@ getMonthlyPaymentsByLorry = async (startDate,endDate,vehicleNo,paymentType) => {
 getAllPaymentsByLorry = async (startDate,endDate,vehicleNo) => {
 
     return new Promise((resolve,reject)=>{
-        Connection.query(`SELECT LorryPayments.paymentsId,LorryPayments.paymentsDate,LorryPayments.paymentsDescription,LorryPayments.paymentsAmount,paymentType.paymentTypeType
-         FROM LorryPayments,paymentType
-        where LorryPayments.paymentType_paymentTypeId=paymentType.paymentTypeId
-        AND LorryPayments.vehicle_vehicleNumber='${vehicleNo}' AND LorryPayments.paymentsDate
-        BETWEEN '${startDate}' AND '${endDate}' ORDER BY LorryPayments.paymentsId`,(err,result) => {
+        Connection.query(`SELECT lorrypayments.paymentsId,lorrypayments.paymentsDate,lorrypayments.paymentsDescription,lorrypayments.paymentsAmount,paymenttype.paymentTypeType
+         FROM lorrypayments,paymenttype
+        where lorrypayments.paymentType_paymentTypeId=paymenttype.paymentTypeId
+        AND lorrypayments.vehicle_vehicleNumber='${vehicleNo}' AND lorrypayments.paymentsDate
+        BETWEEN '${startDate}' AND '${endDate}' ORDER BY lorrypayments.paymentsId`,(err,result) => {
             if(err){
                 return reject(err);
             }
@@ -118,7 +118,7 @@ getAllPaymentsByLorry = async (startDate,endDate,vehicleNo) => {
 
 addPettyCash= async (paymentId,pettyDate) =>{
     return new Promise((resolve,reject) =>{
-        Connection.query(`INSERT INTO pettyCashBook(LorryPayments_paymentsId,pettyDate) VALUES ('${paymentId}','${pettyDate}')`,(err,results)=>{
+        Connection.query(`INSERT INTO pettycashbook(LorryPayments_paymentsId,pettyDate) VALUES ('${paymentId}','${pettyDate}')`,(err,results)=>{
             if(err){
                 reject(err);
             }
@@ -131,7 +131,7 @@ addPettyCash= async (paymentId,pettyDate) =>{
 }
 getLastPaymentId=async () =>{
     return new Promise((resolve,reject) =>{
-        Connection.query(`SELECT paymentsId FROM LorryPayments ORDER BY paymentsId DESC LIMIT 1 `,(err,results)=>{
+        Connection.query(`SELECT paymentsId FROM lorrypayments ORDER BY paymentsId DESC LIMIT 1 `,(err,results)=>{
             if(err){
                 reject(err);
             }
@@ -143,10 +143,10 @@ getLastPaymentId=async () =>{
 }
 getPettyCashBook= async(date)=>{
     return new Promise((resolve,reject)=>{
-        Connection.query(`SELECT pettyCashBook.pettyId, LorryPayments.paymentsAmount,LorryPayments.paymentsDescription,paymentType.paymentTypeType ,LorryPayments.vehicle_vehicleNumber
-        from pettyCashBook,LorryPayments,paymentType WHERE 
-        pettyCashBook.LorryPayments_paymentsId=LorryPayments.paymentsId
-        AND LorryPayments.paymentType_paymentTypeId=paymentType.paymentTypeId AND pettyCashBook.pettyDate='${date}'`,(err,results)=>{
+        Connection.query(`SELECT pettycashbook.pettyId, lorrypayments.paymentsAmount,lorrypayments.paymentsDescription,paymenttype.paymentTypeType ,lorrypayments.vehicle_vehicleNumber
+        from pettycashbook,lorrypayments,paymenttype WHERE 
+        pettycashbook.LorryPayments_paymentsId=lorrypayments.paymentsId
+        AND lorrypayments.paymentType_paymentTypeId=paymenttype.paymentTypeId AND pettycashbook.pettyDate='${date}'`,(err,results)=>{
             if(err){
                 reject(err);
             }
@@ -158,7 +158,7 @@ getPettyCashBook= async(date)=>{
 }
 deletePayment=async(payId)=>{
     return new Promise((resolve,reject)=>{
-        Connection.query(`DELETE FROM LorryPayments WHERE paymentsId='${payId}'`,(err,results)=>{
+        Connection.query(`DELETE FROM lorrypayments WHERE paymentsId='${payId}'`,(err,results)=>{
             if(err){
                 reject(err);
             }
